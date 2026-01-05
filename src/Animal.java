@@ -3,12 +3,14 @@ public abstract class Animal {
     protected int idadeMeses;
     protected String raca;
     protected String especie;
+    protected String pelagem;
 
-    public Animal(String nome, int idadeMeses, String raca, String especie) {
+    public Animal(String nome, int idadeMeses, String raca, String especie, String pelagem) {
         this.nome = nome;
         this.idadeMeses = idadeMeses;
         this.raca = raca;
         this.especie = especie;
+        this.pelagem = pelagem;
     }
     public abstract String calcularFaixaEtaria();
     public void mostrarIdade(int idadeMeses) {
@@ -48,4 +50,11 @@ public abstract class Animal {
         this.especie = especie;
     }
 
+    public String getPelagem() {
+        return pelagem;
+    }
+
+    public void setPelagem(String pelagem) {
+        this.pelagem = pelagem;
+    }
 }

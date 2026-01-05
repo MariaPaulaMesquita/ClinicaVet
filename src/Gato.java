@@ -1,8 +1,8 @@
 public class Gato extends Animal{
     private boolean acessoARua;
 
-    public Gato(String nome, int idadeMeses, String raca, String especie, boolean acessoARua) {
-        super(nome, idadeMeses, raca, especie);
+    public Gato(String nome, int idadeMeses, String raca, String especie, String pelagem, boolean acessoARua) {
+        super(nome, idadeMeses, raca, especie, pelagem);
         this.acessoARua = acessoARua;
     }
 
