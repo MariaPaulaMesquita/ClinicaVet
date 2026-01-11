@@ -14,22 +14,5 @@ public class TiposExames {
         exames.put("Exame de Fezes", 74.00);
         exames.put("Exame de Urina", 44.00);
     }
-/*
-public class TipoExame {
-    private String nome;
-    private double precoBase;
 
-    public TipoExame(String nome, double precoBase) {
-        this.nome = nome;
-        this.precoBase = precoBase;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public double getPrecoBase() {
-        return precoBase;
-    }
-    */
 }
