@@ -1,6 +1,7 @@
 package servicos;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class TiposVacinas {
     public static Map<String, Double> vacinas = new HashMap<>();
