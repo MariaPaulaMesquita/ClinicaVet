@@ -3,7 +3,7 @@ package servicos;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TipoExame {
+public class TiposExames {
     public static Map<String, Double> exames = new HashMap<>();
 
     static {
