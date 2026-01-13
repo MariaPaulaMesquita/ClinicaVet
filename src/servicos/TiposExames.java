@@ -13,6 +13,7 @@ public class TiposExames {
         exames.put("Raio-X", 120.00);
         exames.put("Exame de Fezes", 74.00);
         exames.put("Exame de Urina", 44.00);
+        exames.put("Endoscopia", 700.00);
     }
 
 }
