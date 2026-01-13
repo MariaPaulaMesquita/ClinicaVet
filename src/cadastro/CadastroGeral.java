@@ -14,14 +14,14 @@ public class CadastroGeral { //to na dúvida nos static
     public static Set<Servico> servicosAgendados = new TreeSet<>();
 
     public static void cadastrarTutor(Tutor tutor){
-        tutores.add(tutor);
+        tutores.add(tutor);//excecao neles
     }
      public static void cadastrarAnimal(Animal animal, Tutor tutor){
-        tutor.adicionarAnimal(animal);
+        tutor.adicionarAnimal(animal);//excecao neles
      }
 
      public static void cadastrarVeterinario(Veterinario veterinario){
-        veterinarios.add(veterinario);
+        veterinarios.add(veterinario);//excecao neles
      }
 
 }
