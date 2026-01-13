@@ -1,11 +1,12 @@
 package pessoas;
 
 import animais.*;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
-public class Tutor extends pessoas.Pessoa {
-    private List<Animal> animais;
+public class Tutor extends pessoas.Pessoa implements Comparable<Tutor>{
+    private Set<Animal> animais;
     private String endereco;
     private boolean mensalista;
 
@@ -13,10 +14,14 @@ public class Tutor extends pessoas.Pessoa {
         super(nome, cpf, telefone);
         this.endereco = endereco;
         this.mensalista = mensalista;
-        this.animais = new ArrayList<>();
+        this.animais = new TreeSet<>();
     }
 
-    public List<Animal> getAnimais() {
+    public int compareTo(Tutor tutor){
+        return this.nome.compareToIgnoreCase(tutor.nome);
+    }
+
+    public Set<Animal> getAnimais() {
         return animais;
     }
 

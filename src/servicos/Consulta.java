@@ -8,7 +8,8 @@ public class Consulta extends Servico implements Preco{
     private double peso;
     private double temperatura;
     public Consulta(LocalDateTime dataHora, Animal animal, Veterinario veterinario, double peso, double temperatura) {
-        super(dataHora, animal, veterinario, 120.0); // valor base da consulta
+        super(dataHora, animal, veterinario); // valor base da consulta
+        this.valorBase=120.0;
         this.peso=peso;
         this.temperatura=temperatura;
     }

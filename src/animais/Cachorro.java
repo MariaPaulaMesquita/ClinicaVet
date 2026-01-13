@@ -1,10 +1,12 @@
 package animais;
 
+import java.time.Period;
+
 public class Cachorro extends Animal {
     private String porte;
 
-    public Cachorro(String nome, int idadeMeses, String raca, String pelagem, String porte) {
-        super(nome, idadeMeses, raca, pelagem);
+    public Cachorro(String nome,int dia,  int mes, int ano, String raca, String pelagem, String porte) {
+        super(nome,dia, mes, ano, raca, pelagem);
         this.porte = porte;
     }
 
@@ -18,13 +20,17 @@ public class Cachorro extends Animal {
 
     @Override
     public String calcularFaixaEtaria() {
-        if (idadeMeses<12){
+        Period p = getIdade();
+        int anos = p.getYears();
+        if (anos<1){
         return "filhote";}
-        else if (idadeMeses>= 12 && idadeMeses<=(12*6)){
-            return "adulto jovem";
+        else if (anos<2){
+            return "adolescente";
         }
-        else if (idadeMeses<= (12*11) && idadeMeses>(12*6)){
+        else if (anos< 7){
             return "adulto";}
-        else return "idoso";
+        else if (anos>= 7 && anos < 40){
+            return "senior";}
+        else return ""; // throw exception neles joao pedro.
     }
 }
