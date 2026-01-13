@@ -14,13 +14,13 @@ public class CadastroGeral { //to na dúvida nos static
 
     //cadastros -------------------------------------------------------
     public static void cadastrarTutor(Tutor tutor){
-        tutores.add(tutor);
+        tutores.add(tutor); //excecao neles
     }
     public static void cadastrarAnimal(Animal animal, Tutor tutor){
-        tutor.adicionarAnimal(animal);
+        tutor.adicionarAnimal(animal); //excecao neles
     }
     public static void cadastrarVeterinario(Veterinario vet) {
-        veterinarios.add(vet);
+        veterinarios.add(vet); //excecao neles
     }
 
     //buscas -------------------------------------------------------
