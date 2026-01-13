@@ -18,12 +18,11 @@ public abstract class Servico implements Comparable<Servico> {
     }
 
     public int compareTo(Servico servico){
+        public int compareTo(Servico servico){
         if(this.dataHora.isAfter(servico.dataHora)) return 1;
-        if()
-
-    }// se tu conseguir colocar quando acabar etnao tudo bem
-// boolean	isAfter(ChronoLocalDateTime<?> other)
-//Checks if this date-time is after the specified date-time.
+        if(this.dataHora.isBefore(servico.dataHora)) return -1;
+        else return 0;
+    }
 
 
     public void cancelar(){
