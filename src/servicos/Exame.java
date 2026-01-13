@@ -1,8 +1,8 @@
 package servicos;
 
 import animais.Animal;
-import pessoas.*;
-import java.util.HashMap;
+import pessoas.Veterinario;
+import pessoas.Tutor;
 import java.time.LocalDateTime;
 
 public class Exame extends Servico implements Preco{

@@ -1,6 +1,8 @@
 package pessoas;
 
 import animais.*;
+import servicos.Servico;
+
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -9,6 +11,7 @@ public class Tutor extends pessoas.Pessoa implements Comparable<Tutor>{
     private Set<Animal> animais;
     private String endereco;
     private boolean mensalista;
+    private Tutor tutor;
 
     public Tutor(String nome, String cpf, int telefone, String endereco, boolean mensalista) {
         super(nome, cpf, telefone);
@@ -27,6 +30,7 @@ public class Tutor extends pessoas.Pessoa implements Comparable<Tutor>{
 
     public void adicionarAnimal(Animal animal) {
         animais.add(animal);
+        animal.setTutor(this);
     }
 
     public String getEndereco() {
@@ -44,4 +48,5 @@ public class Tutor extends pessoas.Pessoa implements Comparable<Tutor>{
     public void setMensalista(boolean mensalista) {
         this.mensalista = mensalista;
     }
+
 }

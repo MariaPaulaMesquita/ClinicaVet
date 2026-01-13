@@ -1,5 +1,9 @@
 package animais;
 
+import pessoas.Tutor;
+import servicos.Servico;
+import java.util.Set;
+import java.util.TreeSet;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -8,6 +12,8 @@ public abstract class Animal implements Comparable<Animal> {
     protected LocalDate dataNascimento;
     protected String raca;
     protected String pelagem;
+    protected Tutor tutor;
+    protected Set<Servico> agendamentos;
 
     // quando só sabe mês e ano
     public Animal(String nome, int mes, int ano, String raca, String pelagem) {
@@ -15,6 +21,7 @@ public abstract class Animal implements Comparable<Animal> {
         this.dataNascimento = LocalDate.of(ano, mes, 1); //ele assume dia 1.
         this.raca = raca;
         this.pelagem = pelagem;
+        this.agendamentos = new TreeSet<>();
     }
 
     // quando sabe dia, mês e ano
@@ -30,7 +37,6 @@ public abstract class Animal implements Comparable<Animal> {
     }
 
     public abstract String calcularFaixaEtaria();
-    //TODO retorna classificacao conforme a idade (filhote, adulto...)
 
     public Period getIdade() {
         return Period.between(dataNascimento, LocalDate.now());
@@ -56,5 +62,29 @@ public abstract class Animal implements Comparable<Animal> {
 
     public void setPelagem(String pelagem) {
         this.pelagem = pelagem;
+    }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public Tutor getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
+    }
+
+    public Set<Servico> getAgendamentos() {
+        return agendamentos;
+    }
+
+    public void adicionarAgendamento(Servico servico){
+        this.agendamentos.add(servico);
     }
 }

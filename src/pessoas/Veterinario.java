@@ -1,6 +1,10 @@
 package pessoas;
 
 import java.time.Year;
+import servicos.*;
+import java.util.Set;
+import java.util.TreeSet;
+
 public class Veterinario extends Pessoa implements Comparable<Veterinario> {
     private String crmv;
     private int anoContrato;

@@ -18,12 +18,10 @@ public abstract class Servico implements Comparable<Servico> {
     }
 
     public int compareTo(Servico servico){
-        public int compareTo(Servico servico){
         if(this.dataHora.isAfter(servico.dataHora)) return 1;
         if(this.dataHora.isBefore(servico.dataHora)) return -1;
         else return 0;
     }
-
 
     public void cancelar(){
         this.cancelado = true;
