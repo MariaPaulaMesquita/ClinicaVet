@@ -10,11 +10,10 @@ public abstract class Servico {
     protected double valorBase;
     protected boolean cancelado;
 
-    public Servico(LocalDateTime dataHora, Animal animal, Veterinario veterinario, double valorBase) {
+    public Servico(LocalDateTime dataHora, Animal animal, Veterinario veterinario) {
         this.dataHora = dataHora;
         this.animal = animal;
         this.veterinario = veterinario;
-        this.valorBase = valorBase;
         this.cancelado = false;
     }
 

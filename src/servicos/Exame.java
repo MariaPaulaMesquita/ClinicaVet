@@ -1,27 +1,33 @@
 package servicos;
-import java.time.LocalDateTime;
+
 import animais.Animal;
-import pessoas.Veterinario;
-import pessoas.Tutor;
-// exames : Hemograma, Raio-X, Ultrassom
+import pessoas.*;
+import java.util.HashMap;
+import java.time.LocalDateTime;
+
 public class Exame extends Servico implements Preco{
-    private TipoExame tipo;
-    public Exame(LocalDateTime dataHora, Animal animal, Veterinario veterinario, double valorBase, TipoExame tipo) {
-        super(dataHora, animal, veterinario, valorBase);
-        this.tipo=tipo;
+    private String nomeExame;
+
+    Exame(LocalDateTime dataHora, Animal animal, Veterinario veterinario, String nomeExame){
+        super(dataHora, animal, veterinario);
+        this.nomeExame = nomeExame;
+        this.valorBase = TiposExames.exames.get(nomeExame);
     }
 
-    @Override
-    public double calcularPreco(Tutor tutor) {
-        if (tutor.isMensalista()){
-            return getValorBase()*0.75; // Desconto de 25%
+    public double calcularPreco(Tutor tutor){
+        if(tutor.isMensalista()){
+            return this.valorBase*0.75; //desconto 25%
+        }else{
+            return this.valorBase;
         }
-        else return getValorBase();
-
     }
 
-    @Override
-    public String tipoServico() {
-        return "Exame - " + tipo.getNome();
+    public String getNomeExame(){
+        return this.nomeExame;
     }
+
+    public String tipoServico(){
+        return "Exame - " + this.nomeExame;
+    }
+
 }
