@@ -1,40 +1,47 @@
 package animais;
 
-public abstract class Animal {
+import java.time.LocalDate;
+import java.time.Period;
+
+public abstract class Animal implements Comparable<Animal> {
     protected String nome;
-    protected int idadeMeses;
+    protected LocalDate dataNascimento;
     protected String raca;
     protected String pelagem;
 
-    public Animal(String nome, int idadeMeses, String raca, String pelagem) {
+    // quando só sabe mês e ano
+    public Animal(String nome, int mes, int ano, String raca, String pelagem) {
         this.nome = nome;
-        this.idadeMeses = idadeMeses;
+        this.dataNascimento = LocalDate.of(ano, mes, 1); //ele assume dia 1.
         this.raca = raca;
         this.pelagem = pelagem;
+    }
+
+    // quando sabe dia, mês e ano
+    public Animal(String nome, int dia, int mes, int ano, String raca, String pelagem) {
+        this.nome = nome;
+        this.dataNascimento = LocalDate.of(ano, mes, dia);
+        this.raca = raca;
+        this.pelagem = pelagem;
+    }
+
+    public int compareTo(Animal animal){
+        return this.nome.compareToIgnoreCase(animal.nome);
     }
 
     public abstract String calcularFaixaEtaria();
     //TODO retorna classificacao conforme a idade (filhote, adulto...)
 
-    public void mostrarIdade(int idadeMeses) {
-        int idadeAnos = idadeMeses/12;
-        if (idadeAnos==0) System.out.println("O pet tem " + idadeMeses + " meses.");
-        else System.out.println("O pet tem " + idadeAnos + " e " + idadeMeses%12 + " meses.");
+    public Period getIdade() {
+        return Period.between(dataNascimento, LocalDate.now());
     }
+
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public int getIdadeMeses() {
-        return idadeMeses;
-    }
-
-    public void setIdadeMeses(int idadeMeses) {
-        this.idadeMeses = idadeMeses;
     }
 
     public String getRaca() {

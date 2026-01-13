@@ -1,7 +1,7 @@
 package pessoas;
 
 import java.time.Year;
-public class Veterinario extends Pessoa {
+public class Veterinario extends Pessoa implements Comparable<Veterinario> {
     private String crmv;
     private int anoContrato;
     private int anoFormacao;
@@ -11,6 +11,10 @@ public class Veterinario extends Pessoa {
         this.crmv = crmv;
         this.anoContrato = anoContrato;
         this.anoFormacao = anoFormacao;
+    }
+
+    public int compareTo(Veterinario vet){
+        return this.nome.compareToIgnoreCase(vet.nome);
     }
 
     public int getAnosContratado(){

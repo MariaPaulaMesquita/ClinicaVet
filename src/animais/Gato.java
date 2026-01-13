@@ -1,10 +1,12 @@
 package animais;
 
+import java.time.Period;
+
 public class Gato extends Animal{
     private boolean acessoARua;
 
-    public Gato(String nome, int idadeMeses, String raca, String pelagem, boolean acessoARua) {
-        super(nome, idadeMeses, raca, pelagem);
+    public Gato(String nome, int dia, int mes, int ano, String raca, String pelagem, boolean acessoARua) {
+        super(nome, dia, mes, ano, raca, pelagem);
         this.acessoARua = acessoARua;
     }
 
@@ -18,13 +20,25 @@ public class Gato extends Animal{
 
     @Override
     public String calcularFaixaEtaria() {
-        if (idadeMeses<12){
+        Period p = getIdade();
+        int anos = p.getYears();
+        int meses = p.getMonths();
+
+        if (anos<1 && meses<7){ // de 0 a 6 meses
             return "filhote";}
-        else if (idadeMeses<(12*8)){
-            return "adulto";
+        else if (anos<3){ // de 7 meses a 2 anos
+            return "jovem";
         }
-        else if (idadeMeses<(12*12)){
-            return "idoso";}
-        else return "geriátrico";
+        else if (anos<7){ //de 3 a 6 anos
+            return "adulto jovem";
+        }
+        else if (anos<11){ // de 7 a 10 anos
+            return "maduro";}
+        else if (anos<15){ // de 11 a 14 anos
+            return "senior";}
+        else if (anos>=15 && anos<40 ){ // +15 e menor que uma idade que ultrapassa o limite de vida.
+            return "geriátrico";
+        }
+        else return ""; // throw exception aí
     }
 }
