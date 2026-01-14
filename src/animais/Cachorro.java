@@ -31,6 +31,6 @@ public class Cachorro extends Animal {
             return "adulto";}
         else if (anos>= 7 && anos < 40){
             return "senior";}
-        else return ""; // throw exception neles joao pedro.
+        else throw new IdadeInvalidaException("Idade invalida");//A mensagem caso alguem queira mudar ta de boas e so que eu n sei muito oq colocar de mensagem pra esse caso kk
     }
 }
