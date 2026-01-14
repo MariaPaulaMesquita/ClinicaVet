@@ -30,7 +30,9 @@ public abstract class Pessoa {
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;//cpf invalido ja ja
+        if(cpf==null || cpf ==""){
+            throw new CpfInvalidoException("Digite um CPF valido");
+        this.cpf = cpf;
     }
 
     public int getTelefone() {
