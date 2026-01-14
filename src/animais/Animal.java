@@ -47,7 +47,9 @@ public abstract class Animal implements Comparable<Animal> {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if(nome==null || nome ==""){
+            throw new NomeInvalidoException("Digite um nome valido");}
+        else this.nome = nome;// necessario? 
     }
 
     public String getRaca() {
