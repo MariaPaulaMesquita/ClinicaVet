@@ -39,6 +39,6 @@ public class Gato extends Animal{
         else if (anos>=15 && anos<40 ){ // +15 e menor que uma idade que ultrapassa o limite de vida.
             return "geriátrico";
         }
-        else return ""; // throw exception aí
+        else throw IdadeInvalidaException("Idade invalida")//msm coisa da parte do cachorro
     }
 }
