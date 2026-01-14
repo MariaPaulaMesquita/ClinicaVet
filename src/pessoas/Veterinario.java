@@ -22,14 +22,17 @@ public class Veterinario extends Pessoa implements Comparable<Veterinario> {
     }
 
     public int getAnosContratado(){
-        return (Year.now().getValue() - anoContrato);
+        if(anoContrato>Year.now().getValue() || anoContrato<1926){
+            throw new AnoInvalidoException("Ano de contrato invalido");}
+       else return (Year.now().getValue() - anoContrato);
     }
-    //levantar exceções se anoContrato > ano atual
 
     public int getAnosExperiencia(){
-        return (Year.now().getValue() - anoFormacao);
+         if(anoFormacao>Year.now().getValue() || anoFormacao<1916){
+            throw new AnoInvalidoException("Ano de formacao invalido");}
+      else return (Year.now().getValue() - anoFormacao);
     }
-    //levantar exceções se anoFormacao > ano atual
+   
 
     public String getCrmv() {
         return crmv;
@@ -44,17 +47,19 @@ public class Veterinario extends Pessoa implements Comparable<Veterinario> {
     }
 
     public void setAnoContrato(int anoContrato) {
-        this.anoContrato = anoContrato;
+         if(anoContrato>Year.now().getValue() || anoContrato<1926){
+            throw new AnoInvalidoException("Ano de contrato invalido");}
+        else this.anoContrato = anoContrato;
     }
-    //levantar exceções se anoContrato > ano atual
+   
 
     public int getAnoFormacao() {
         return anoFormacao;
     }
 
     public void setAnoFormacao(int anoFormacao) {
-        this.anoFormacao = anoFormacao;
+        if(anoFormacao>Year.now().getValue() || anoFormacao<1916){
+            throw new AnoInvalidoException("Ano de formacao invalido");}
+        else this.anoFormacao = anoFormacao;
     }
-    //levantar exceções se anoFormacao > ano atual
-
 }
