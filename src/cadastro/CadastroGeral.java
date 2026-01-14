@@ -42,7 +42,7 @@ public class CadastroGeral { //to na dúvida nos static
         servico.getVeterinario().adicionarAgendamento(servico);
         servico.getAnimal().adicionarAgendamento(servico);
         servico.getAnimal().getTutor().adicionarAgendamento(servico);
-    }//essa parte ta dando errado dps q o jp botou as excecoes e eu n to entendendo o q ta errado, mas n acho q o problema seja as excecoes
+    }
 
     public void cancelarServico(Servico servico){
         servico.cancelar();
