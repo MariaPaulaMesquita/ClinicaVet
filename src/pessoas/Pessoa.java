@@ -1,7 +1,7 @@
 package pessoas;
 
-import Excecoes.CpfInvalidoException;
-import Excecoes.NomeInvalidoException;
+import excecoes.CpfInvalidoException;
+import excecoes.NomeInvalidoException;
 import servicos.Servico;
 import java.util.Set;
 import java.util.TreeSet;

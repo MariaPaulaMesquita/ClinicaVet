@@ -1,10 +1,7 @@
 package pessoas;
 
 import java.time.Year;
-import Excecoes.AnoInvalidoException;
-import servicos.*;
-import java.util.Set;
-import java.util.TreeSet;
+import excecoes.AnoInvalidoException;
 
 public class Veterinario extends Pessoa implements Comparable<Veterinario> {
     private String crmv;

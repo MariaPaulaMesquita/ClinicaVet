@@ -1,6 +1,6 @@
 package animais;
 
-import Excecoes.NomeInvalidoException;
+import excecoes.NomeInvalidoException;
 import pessoas.Tutor;
 import servicos.Servico;
 import java.util.Set;

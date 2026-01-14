@@ -1,4 +1,4 @@
-package Excecoes;
+package excecoes;
 
 public class EspecieInvalidaException extends RuntimeException {
     public EspecieInvalidaException(String message) {

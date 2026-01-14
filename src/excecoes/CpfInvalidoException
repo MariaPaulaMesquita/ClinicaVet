@@ -1,4 +1,4 @@
-package Excecoes;
+package excecoes;
 
 public class CpfInvalidoException extends RuntimeException {
     public CpfInvalidoException(String message) {

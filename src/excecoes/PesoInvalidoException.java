@@ -1,4 +1,4 @@
-package Excecoes;
+package excecoes;
 
 public class PesoInvalidoException extends RuntimeException {
     public PesoInvalidoException(String message) {
