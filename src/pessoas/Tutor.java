@@ -29,7 +29,7 @@ public class Tutor extends pessoas.Pessoa implements Comparable<Tutor>{
     }
 
     public void adicionarAnimal(Animal animal) {
-        animais.add(animal);
+        animais.add(animal);//excecao pra n ser null?
         animal.setTutor(this);
     }
 
