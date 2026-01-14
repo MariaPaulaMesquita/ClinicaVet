@@ -49,7 +49,7 @@ public class CadastroGeral { //to na dúvida nos static
     }
 
     public void alterarDataServico(Servico servico, LocalDateTime dataNova){
-        servico.setDataHora(dataNova);
+        servico.setDataHora(dataNova);// excecao neles pq tem q ver se o vet vai estar disponivel
     }
 
 }
