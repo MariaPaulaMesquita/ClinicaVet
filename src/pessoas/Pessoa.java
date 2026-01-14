@@ -20,7 +20,9 @@ public abstract class Pessoa {
     public String getNome() { return nome; }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if(nome==null || nome ==""){
+            throw new NomeInvalidoException("Digite um nome valido");}
+        else this.nome = nome;
     }
 
     public String getCpf() {
@@ -28,7 +30,7 @@ public abstract class Pessoa {
     }
 
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        this.cpf = cpf;//cpf invalido ja ja
     }
 
     public int getTelefone() {
@@ -36,7 +38,7 @@ public abstract class Pessoa {
     }
 
     public void setTelefone(int telefone) {
-        this.telefone = telefone;
+        this.telefone = telefone;// n seria melhor colocar telefone como string pq tem coisas como o +55 e tals
     }
 
     public Set<Servico> getAgendamentos() {
