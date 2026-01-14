@@ -1,6 +1,7 @@
 package pessoas;
 
 import java.time.Year;
+import Excecoes.AnoInvalidoException;
 import servicos.*;
 import java.util.Set;
 import java.util.TreeSet;
@@ -24,7 +25,7 @@ public class Veterinario extends Pessoa implements Comparable<Veterinario> {
     public int getAnosContratado(){
         if(anoContrato>Year.now().getValue() || anoContrato<1926){
             throw new AnoInvalidoException("Ano de contrato invalido");}
-       else return (Year.now().getValue() - anoContrato);
+        else return (Year.now().getValue() - anoContrato);
     }
 
     public int getAnosExperiencia(){

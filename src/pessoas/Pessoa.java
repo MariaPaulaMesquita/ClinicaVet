@@ -1,5 +1,7 @@
 package pessoas;
 
+import Excecoes.CpfInvalidoException;
+import Excecoes.NomeInvalidoException;
 import servicos.Servico;
 import java.util.Set;
 import java.util.TreeSet;
@@ -32,6 +34,7 @@ public abstract class Pessoa {
     public void setCpf(String cpf) {
         if(cpf==null || cpf ==""){
             throw new CpfInvalidoException("Digite um CPF valido");
+        }
         this.cpf = cpf;
     }
 
