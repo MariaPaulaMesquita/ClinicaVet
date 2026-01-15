@@ -10,13 +10,13 @@ import java.util.TreeSet;
 public class Tutor extends pessoas.Pessoa implements Comparable<Tutor>{
     private Set<Animal> animais;
     private String endereco;
-    private boolean mensalista; //criar uma classe enum de mensalista,tradicional...
+    private Tratamento tratamento; //criar uma classe enum de mensalista,tradicional...
     private Tutor tutor;
 
-    public Tutor(String nome, String cpf, int telefone, String endereco, boolean mensalista) {
+    public Tutor(String nome, String cpf, int telefone, String endereco, Tratamento tratamento) {
         super(nome, cpf, telefone);
         this.endereco = endereco;
-        this.mensalista = mensalista;
+        this.tratamento = tratamento;
         this.animais = new TreeSet<>();
     }
 
@@ -41,12 +41,11 @@ public class Tutor extends pessoas.Pessoa implements Comparable<Tutor>{
         this.endereco = endereco;
     }
 
-    public boolean isMensalista() {
-        return mensalista;
+    public Tratamento getTratamento() {
+        return tratamento;
     }
 
-    public void setMensalista(boolean mensalista) {
-        this.mensalista = mensalista;
+    public void setTratamento(Tratamento tratamento) {
+        this.tratamento = tratamento;
     }
-
 }

@@ -14,7 +14,6 @@ public abstract class Animal implements Comparable<Animal> {
     protected String raca;
     protected String pelagem;
     protected Tutor tutor;
-    protected Set<Servico> agendamentos;
     //fazer uma lista de agendamentos e quando precisar percorrer a lista e achar os agendamentos do animal
 
     // quando só sabe mês e ano
@@ -23,7 +22,6 @@ public abstract class Animal implements Comparable<Animal> {
         this.dataNascimento = LocalDate.of(ano, mes, 1); //ele assume dia 1.
         this.raca = raca;
         this.pelagem = pelagem;
-        this.agendamentos = new TreeSet<>();
     }
 
     // quando sabe dia, mês e ano
@@ -84,11 +82,4 @@ public abstract class Animal implements Comparable<Animal> {
         this.tutor = tutor;
     }
 
-    public Set<Servico> getAgendamentos() {
-        return agendamentos;
-    }
-
-    public void adicionarAgendamento(Servico servico){
-        this.agendamentos.add(servico);
-    }
 }

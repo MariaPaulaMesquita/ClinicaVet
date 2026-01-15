@@ -1,6 +1,7 @@
 package animais;
 
 import java.time.Period;
+import excecoes.IdadeInvalidaException;
 
 public class Gato extends Animal{
     private boolean acessoARua;
@@ -39,6 +40,6 @@ public class Gato extends Animal{
         else if (anos>=15 && anos<40 ){ // +15 e menor que uma idade que ultrapassa o limite de vida.
             return "geriátrico";
         }
-        else throw IdadeInvalidaException("Idade invalida")//msm coisa da parte do cachorro
+        else throw new IdadeInvalidaException("Idade invalida"); //msm coisa da parte do cachorro
     }
 }

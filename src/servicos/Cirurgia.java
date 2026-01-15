@@ -1,6 +1,7 @@
 package servicos;
 
 import animais.*;
+import pessoas.Tratamento;
 import pessoas.Tutor;
 import pessoas.Veterinario;
 
@@ -33,7 +34,7 @@ public class Cirurgia extends Servico implements Preco{
 
     @Override
     public double calcularPreco(Tutor tutor) {
-        if(tutor.isMensalista()){
+        if(tutor.getTratamento() == Tratamento.MENSALISTA){
             return this.valorBase*0.5; //desconto 25%
         }else{
             return this.valorBase;

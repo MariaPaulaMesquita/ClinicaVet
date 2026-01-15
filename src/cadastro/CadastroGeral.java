@@ -8,7 +8,9 @@ import java.util.Set;
 import java.util.TreeSet;
 
 //cadastro de clientes e cadastro de funcionarios;
-public class CadastroGeral { //to na dúvida nos static
+public class CadastroGeral {
+    //TODO deletar essa classe
+    /*
     public Set<Tutor> tutores = new TreeSet<>() ;
     public Set<Veterinario> veterinarios = new TreeSet<>();
     public Set<Servico> servicosAgendados = new TreeSet<>();
@@ -56,4 +58,5 @@ public class CadastroGeral { //to na dúvida nos static
     //mostrar -------------------------------------------------------
     //tirar as buscas so com get?? e fazer listar com system.out.print
 
+     */
 }

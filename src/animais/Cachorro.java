@@ -1,5 +1,6 @@
 package animais;
 
+import excecoes.IdadeInvalidaException;
 import java.time.Period;
 
 public class Cachorro extends Animal {
@@ -31,6 +32,6 @@ public class Cachorro extends Animal {
             return "adulto";}
         else if (anos>= 7 && anos < 40){
             return "senior";}
-        else throw new IdadeInvalidaException("Idade invalida");//A mensagem caso alguem queira mudar ta de boas e so que eu n sei muito oq colocar de mensagem pra esse caso kk
+        else throw new IdadeInvalidaException("Idade invalida"); //A mensagem caso alguem queira mudar ta de boas e so que eu n sei muito oq colocar de mensagem pra esse caso kk
     }
 }

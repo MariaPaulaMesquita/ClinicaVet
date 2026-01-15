@@ -1,6 +1,7 @@
 package servicos;
 
 import animais.Animal;
+import pessoas.Tratamento;
 import pessoas.Veterinario;
 import pessoas.Tutor;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ public class Exame extends Servico implements Preco{
     }
 
     public double calcularPreco(Tutor tutor){
-        if(tutor.isMensalista()){
+        if(tutor.getTratamento() == Tratamento.MENSALISTA){
             return this.valorBase*0.75; //desconto 25%
         }else{
             return this.valorBase;
