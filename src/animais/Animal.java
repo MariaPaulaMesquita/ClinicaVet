@@ -2,9 +2,6 @@ package animais;
 
 import excecoes.NomeInvalidoException;
 import pessoas.Tutor;
-import servicos.Servico;
-import java.util.Set;
-import java.util.TreeSet;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -14,19 +11,22 @@ public abstract class Animal implements Comparable<Animal> {
     protected String raca;
     protected String pelagem;
     protected Tutor tutor;
+    protected String sexo;
     //fazer uma lista de agendamentos e quando precisar percorrer a lista e achar os agendamentos do animal
 
     // quando só sabe mês e ano
-    public Animal(String nome, int mes, int ano, String raca, String pelagem) {
+    public Animal(String nome, String sexo, int mes, int ano, String raca, String pelagem) {
         this.nome = nome;
+        this.sexo = sexo;
         this.dataNascimento = LocalDate.of(ano, mes, 1); //ele assume dia 1.
         this.raca = raca;
         this.pelagem = pelagem;
     }
 
     // quando sabe dia, mês e ano
-    public Animal(String nome, int dia, int mes, int ano, String raca, String pelagem) {
+    public Animal(String nome, String sexo, int dia, int mes, int ano, String raca, String pelagem) {
         this.nome = nome;
+        this.sexo = sexo;
         this.dataNascimento = LocalDate.of(ano, mes, dia);
         this.raca = raca;
         this.pelagem = pelagem;
@@ -56,6 +56,14 @@ public abstract class Animal implements Comparable<Animal> {
         if(nome==null || nome.isBlank()){
             throw new NomeInvalidoException("Digite um nome valido");}
         else this.nome = nome;// necessario? 
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public String getRaca() {

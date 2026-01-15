@@ -28,7 +28,11 @@ public abstract class Servico implements Comparable<Servico> {
     }
 
     public abstract String tipoServico();
+    public void mostrarDataHora(){
+        System.out.print("Dia: "+ getDataHora().getDayOfMonth() +"/" + getDataHora().getMonthValue() + ", Horário: " + getDataHora().getHour() + ":" +getDataHora().getMinute());
+    }
 
+    //gets e sets
     public LocalDateTime getDataHora() {
         return dataHora;
     }

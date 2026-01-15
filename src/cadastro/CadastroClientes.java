@@ -1,6 +1,8 @@
 package cadastro;
 
 import animais.Animal;
+import animais.Cachorro;
+import animais.Gato;
 import pessoas.Tutor;
 
 import java.util.Set;
@@ -19,6 +21,7 @@ public class CadastroClientes {
 
     //listagens -------------------------------------------------------
     public void listarTutores(){
+        System.out.println("---------------\nTUTORES: \n---------------");
         if (tutores.isEmpty()) {
             System.out.println("Nenhum tutor cadastrado.");
             return;
@@ -29,16 +32,33 @@ public class CadastroClientes {
             System.out.println("Telefone: " + t.getTelefone());
             System.out.println("Endereço: " + t.getEndereco());
             System.out.println("Animais cadastrados: ");
+            t.mostrarAnimais();
+
+            /*
             if (t.getAnimais().isEmpty()) {
-                System.out.println("Nenhum animal cadastrado.");
+                System.out.println("    - Nenhum animal cadastrado.");
             } else {
+                String especie = "";
+                int qtdAnimal = 1;
                 for (Animal a : t.getAnimais()){
-                    System.out.println("- " + a.getNome());
-                    System.out.println("Idade: ");
+                    if(qtdAnimal > 1){
+                        System.out.println(); //separa animais por uma linha em branco entre eles
+                    }
+                    if(a instanceof Cachorro) especie = "Cachorro";
+                    if(a instanceof Gato) especie = "Gato";
+                    System.out.println("    - " + a.getNome() + " (" + especie + ")");
+                    System.out.println("    Sexo: " + a.getSexo());
+                    System.out.print("    Idade: ");
                     a.mostrarIdade();
-                    System.out.println();
+                    System.out.println("    Raca: " + a.getRaca());
+                    System.out.println("    Pelagem: " + a.getPelagem());
+
+                    qtdAnimal++;
                 }
+
             }
+            */
+            System.out.println("---------------");
         }
     }
 

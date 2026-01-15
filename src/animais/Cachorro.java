@@ -6,12 +6,12 @@ import java.time.Period;
 public class Cachorro extends Animal {
     private String porte;
 
-    public Cachorro(String nome,int dia,  int mes, int ano, String raca, String pelagem, String porte) {
-        super(nome,dia, mes, ano, raca, pelagem);
+    public Cachorro(String nome, String sexo, int dia,  int mes, int ano, String raca, String pelagem, String porte) {
+        super(nome, sexo, dia, mes, ano, raca, pelagem);
         this.porte = porte;
     }
-    public Cachorro(String nome,  int mes, int ano, String raca, String pelagem, String porte) {
-        super(nome, mes, ano, raca, pelagem);
+    public Cachorro(String nome, String sexo, int mes, int ano, String raca, String pelagem, String porte) {
+        super(nome, sexo, mes, ano, raca, pelagem);
         this.porte = porte;
     }
 

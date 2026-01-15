@@ -11,7 +11,7 @@ public class Cirurgia extends Servico implements Preco{
     private String nomeCirurgia;
     public Cirurgia(LocalDateTime dataHora, Animal animal, Veterinario veterinario, String nomeCirurgia){
         super(dataHora, animal, veterinario);
-        this.nomeCirurgia=nomeCirurgia;
+        this.nomeCirurgia = nomeCirurgia;
         String especie= descobrirEspecie(animal);
         this.valorBase = TiposCirurgia.getPreco(especie, nomeCirurgia);
 

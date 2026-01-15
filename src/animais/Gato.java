@@ -6,12 +6,12 @@ import excecoes.IdadeInvalidaException;
 public class Gato extends Animal{
     private boolean acessoARua;
 
-    public Gato(String nome, int dia, int mes, int ano, String raca, String pelagem, boolean acessoARua) {
-        super(nome, dia, mes, ano, raca, pelagem);
+    public Gato(String nome, String sexo, int dia, int mes, int ano, String raca, String pelagem, boolean acessoARua) {
+        super(nome, sexo, dia, mes, ano, raca, pelagem);
         this.acessoARua = acessoARua;
     }
-    public Gato(String nome, int mes, int ano, String raca, String pelagem, boolean acessoARua) {
-        super(nome, mes, ano, raca, pelagem);
+    public Gato(String nome, String sexo, int mes, int ano, String raca, String pelagem, boolean acessoARua) {
+        super(nome, sexo, mes, ano, raca, pelagem);
         this.acessoARua = acessoARua;
     }
 
