@@ -14,7 +14,7 @@ public class Vacinacao extends Servico implements Preco{
     }
 
     public double calcularPreco(Tutor tutor){
-        if(tutor.isMensalista()){
+        if(tutor.getTratamento() == Tratamento.MENSALISTA){
             return this.valorBase*0.7; //desconto 30%
         }else{
             return this.valorBase;

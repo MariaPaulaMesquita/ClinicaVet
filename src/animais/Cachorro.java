@@ -10,6 +10,10 @@ public class Cachorro extends Animal {
         super(nome,dia, mes, ano, raca, pelagem);
         this.porte = porte;
     }
+    public Cachorro(String nome,  int mes, int ano, String raca, String pelagem, String porte) {
+        super(nome, mes, ano, raca, pelagem);
+        this.porte = porte;
+    }
 
     public String getPorte() {
         return porte;

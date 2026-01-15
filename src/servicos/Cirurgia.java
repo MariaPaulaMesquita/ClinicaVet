@@ -35,7 +35,7 @@ public class Cirurgia extends Servico implements Preco{
     @Override
     public double calcularPreco(Tutor tutor) {
         if(tutor.getTratamento() == Tratamento.MENSALISTA){
-            return this.valorBase*0.5; //desconto 25%
+            return this.valorBase*0.5; //desconto 50%
         }else{
             return this.valorBase;
         }

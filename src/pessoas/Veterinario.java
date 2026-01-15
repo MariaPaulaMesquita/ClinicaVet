@@ -8,7 +8,7 @@ public class Veterinario extends Pessoa implements Comparable<Veterinario> {
     private int anoContrato;
     private int anoFormacao;
 
-    public Veterinario(String nome, String cpf, int telefone, String crmv, int anoContrato, int anoFormacao) {
+    public Veterinario(String nome, String cpf, String telefone, String crmv, int anoContrato, int anoFormacao) {
         super(nome, cpf, telefone);
         this.crmv = crmv;
         this.anoContrato = anoContrato;

@@ -10,6 +10,10 @@ public class Gato extends Animal{
         super(nome, dia, mes, ano, raca, pelagem);
         this.acessoARua = acessoARua;
     }
+    public Gato(String nome, int mes, int ano, String raca, String pelagem, boolean acessoARua) {
+        super(nome, mes, ano, raca, pelagem);
+        this.acessoARua = acessoARua;
+    }
 
     public boolean isAcessoARua() {
         return acessoARua;

@@ -9,10 +9,10 @@ import java.util.TreeSet;
 public abstract class Pessoa {
     protected String nome;
     protected String cpf;
-    protected int telefone;
+    protected String telefone;
     private Set<Servico> agendamentos;
 
-    public Pessoa(String nome, String cpf, int telefone) {
+    public Pessoa(String nome, String cpf, String telefone) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
@@ -38,12 +38,12 @@ public abstract class Pessoa {
         this.cpf = cpf;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;// n seria melhor colocar telefone como string pq tem coisas como o +55 e tals
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public Set<Servico> getAgendamentos() {

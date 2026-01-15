@@ -41,13 +41,19 @@ public abstract class Animal implements Comparable<Animal> {
     public Period getIdade() {
         return Period.between(dataNascimento, LocalDate.now());
     }
+    public void mostrarIdade() {
+        Period p = getIdade();
+        if (p.getYears() > 0) {
+            System.out.println(p.getYears() + " anos " + "e " + p.getMonths() + " meses");
+        } else System.out.println(p.getMonths() + " meses");
+    }
 
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
-        if(nome==null || nome ==""){
+        if(nome==null || nome.isBlank()){
             throw new NomeInvalidoException("Digite um nome valido");}
         else this.nome = nome;// necessario? 
     }

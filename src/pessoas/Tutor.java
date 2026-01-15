@@ -11,9 +11,8 @@ public class Tutor extends pessoas.Pessoa implements Comparable<Tutor>{
     private Set<Animal> animais;
     private String endereco;
     private Tratamento tratamento; //criar uma classe enum de mensalista,tradicional...
-    private Tutor tutor;
 
-    public Tutor(String nome, String cpf, int telefone, String endereco, Tratamento tratamento) {
+    public Tutor(String nome, String cpf, String telefone, String endereco, Tratamento tratamento) {
         super(nome, cpf, telefone);
         this.endereco = endereco;
         this.tratamento = tratamento;
