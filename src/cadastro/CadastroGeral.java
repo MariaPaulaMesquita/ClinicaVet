@@ -7,19 +7,20 @@ import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.TreeSet;
 
+//cadastro de clientes e cadastro de funcionarios;
 public class CadastroGeral { //to na dúvida nos static
-    public static Set<Tutor> tutores = new TreeSet<>() ;
-    public static Set<Veterinario> veterinarios = new TreeSet<>();
-    public static Set<Servico> servicosAgendados = new TreeSet<>();
+    public Set<Tutor> tutores = new TreeSet<>() ;
+    public Set<Veterinario> veterinarios = new TreeSet<>();
+    public Set<Servico> servicosAgendados = new TreeSet<>();
 
     //cadastros -------------------------------------------------------
-    public static void cadastrarTutor(Tutor tutor){
+    public void cadastrarTutor(Tutor tutor){
         tutores.add(tutor); //excecao neles
     }
-    public static void cadastrarAnimal(Animal animal, Tutor tutor){
+    public void cadastrarAnimal(Animal animal, Tutor tutor){
         tutor.adicionarAnimal(animal); //excecao neles
     }
-    public static void cadastrarVeterinario(Veterinario vet) {
+    public void cadastrarVeterinario(Veterinario vet) {
         veterinarios.add(vet); //excecao neles
     }
 
@@ -51,5 +52,8 @@ public class CadastroGeral { //to na dúvida nos static
     public void alterarDataServico(Servico servico, LocalDateTime dataNova){
         servico.setDataHora(dataNova);// excecao neles pq tem q ver se o vet vai estar disponivel
     }
+
+    //mostrar -------------------------------------------------------
+    //tirar as buscas so com get?? e fazer listar com system.out.print
 
 }

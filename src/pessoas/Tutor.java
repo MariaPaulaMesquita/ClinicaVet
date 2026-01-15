@@ -10,7 +10,7 @@ import java.util.TreeSet;
 public class Tutor extends pessoas.Pessoa implements Comparable<Tutor>{
     private Set<Animal> animais;
     private String endereco;
-    private boolean mensalista;
+    private boolean mensalista; //criar uma classe enum de mensalista,tradicional...
     private Tutor tutor;
 
     public Tutor(String nome, String cpf, int telefone, String endereco, boolean mensalista) {

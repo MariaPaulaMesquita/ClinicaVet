@@ -22,7 +22,7 @@ public abstract class Pessoa {
     public String getNome() { return nome; }
 
     public void setNome(String nome) {
-        if(nome==null || nome ==""){
+        if(nome==null || nome.isBlank()){
             throw new NomeInvalidoException("Digite um nome valido");}
         else this.nome = nome;
     }
@@ -32,7 +32,7 @@ public abstract class Pessoa {
     }
 
     public void setCpf(String cpf) {
-        if(cpf==null || cpf ==""){
+        if(cpf==null || cpf.isBlank()){
             throw new CpfInvalidoException("Digite um CPF valido");
         }
         this.cpf = cpf;

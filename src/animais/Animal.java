@@ -15,6 +15,7 @@ public abstract class Animal implements Comparable<Animal> {
     protected String pelagem;
     protected Tutor tutor;
     protected Set<Servico> agendamentos;
+    //fazer uma lista de agendamentos e quando precisar percorrer a lista e achar os agendamentos do animal
 
     // quando só sabe mês e ano
     public Animal(String nome, int mes, int ano, String raca, String pelagem) {
