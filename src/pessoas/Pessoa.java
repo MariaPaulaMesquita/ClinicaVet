@@ -35,7 +35,7 @@ public abstract class Pessoa {
         if(cpf==null || cpf.isBlank()){
             throw new CpfInvalidoException("Digite um CPF valido");
         }
-        this.cpf = cpf;
+        else this.cpf = cpf;
     }
 
     public String getTelefone() {
