@@ -36,7 +36,7 @@ public class PainelAN extends JPanel {
         card2.add(new JLabel("Cadastro"),BorderLayout.NORTH);
         card2.add(z, BorderLayout.CENTER);
         card2.add(btnCard1,BorderLayout.SOUTH);
-
+        //TODO a tela de cadastro e implementar a tabela
     }
 
     private JPanel criarCard1() {
