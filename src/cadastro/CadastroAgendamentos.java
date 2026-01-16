@@ -29,7 +29,7 @@ public class CadastroAgendamentos {
         if(servico == null || !servicosAgendados.contains(servico)){
             throw new ServicoInvalidoException("Seu serviço não tinha sido agendado previamente por favor agende-o");}
        // to meio na duvida de como eu checaria o horario pq eu precisaria comparar com os elementos da lista else if(servico.getVeterinario()
-        servico.setDataHora(dataNova);// excecao neles pq tem q ver se o vet e o animal vai estar disponivel
+       else servico.setDataHora(dataNova);// excecao neles pq tem q ver se o vet e o animal vai estar disponivel
     }
 
     //listagens -------------------------------------------------------
