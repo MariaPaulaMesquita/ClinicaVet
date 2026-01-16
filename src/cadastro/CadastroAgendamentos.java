@@ -16,7 +16,7 @@ public class CadastroAgendamentos {
         servicosAgendados.add(servico);
         servico.getVeterinario().adicionarAgendamento(servico);
         servico.getAnimal().getTutor().adicionarAgendamento(servico);
-    }
+    }//excecao neles tbm 
 
     //mudanças -------------------------------------------------------
     public void cancelarServico(Servico servico){
