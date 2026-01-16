@@ -30,6 +30,8 @@ public class TesteClinica {
         funcionarios.listarVeterinarios();
         agendamentos.agendarServico(new Consulta(LocalDateTime.of(2026, 1, 24, 14, 30),a1, v1));
         agendamentos.listarAgendamentosDoTutor(p1);
+        agendamentos.listarAgendamentosDoAnimal(a1);
+        agendamentos.listarAgendamentosDoVeterinario(v1);
 
 
 

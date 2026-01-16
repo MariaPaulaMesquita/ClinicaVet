@@ -1,5 +1,6 @@
 package cadastro;
 
+import excecoes.VeterinarioInvalidoException;
 import pessoas.Tutor;
 import pessoas.Veterinario;
 
