@@ -11,7 +11,9 @@ public class CadastroFuncionarios {
 
     //cadastros -------------------------------------------------------
     public void cadastrarVeterinario(Veterinario vet) {
-        veterinarios.add(vet); //excecao neles
+        if(vet==null){
+            throw new VeterinarioInvalidoException("Digite um veterinario valido");}
+        veterinarios.add(vet);
     }
 
     //listagens -------------------------------------------------------

@@ -13,9 +13,11 @@ public class CadastroAgendamentos {
 
     //cadastro -------------------------------------------------------
     public void agendarServico(Servico servico){
-        servicosAgendados.add(servico);
-        servico.getVeterinario().adicionarAgendamento(servico);
-        servico.getAnimal().getTutor().adicionarAgendamento(servico);
+        if(servico==null){
+            throw new ServicoInvalidoException ("Digite um serviço valido");}
+       else servicosAgendados.add(servico);
+        servico.getVeterinario().adicionarAgendamento(servico);//excecao pra vet indisponivel
+        servico.getAnimal().getTutor().adicionarAgendamento(servico);//excecao pra animal indisponivel
     }
 
     //mudanças -------------------------------------------------------
@@ -24,7 +26,10 @@ public class CadastroAgendamentos {
     }
 
     public void alterarDataServico(Servico servico, LocalDateTime dataNova){
-        servico.setDataHora(dataNova);// excecao neles pq tem q ver se o vet vai estar disponivel
+        if(servico == null || !servicosAgendados.contains(servico)){
+            throw new ServicoInvalidoException("Seu serviço não tinha sido agendado previamente por favor agende-o");}
+       // to meio na duvida de como eu checaria o horario pq eu precisaria comparar com os elementos da lista else if(servico.getVeterinario()
+       else servico.setDataHora(dataNova);// excecao neles pq tem q ver se o vet e o animal vai estar disponivel
     }
 
     //listagens -------------------------------------------------------

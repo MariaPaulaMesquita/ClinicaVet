@@ -26,10 +26,10 @@ public class Cirurgia extends Servico implements Preco{
         if (animal instanceof Gato) {
             return "Gato";
         }
-        if (animal instanceof Cachorro) {
+        else if (animal instanceof Cachorro) {
             return "Cachorro";
         }
-        throw new IllegalArgumentException("Espécie não suportada");
+        else throw  new EspecieInvalidaException("Espécie não suportada");
     }
 
     @Override
