@@ -18,8 +18,11 @@ public class CadastroClientes {
        else tutores.add(tutor); //excecao neles
     }
     public void cadastrarAnimal(Animal animal, Tutor tutor){
-        
-        tutor.adicionarAnimal(animal); //excecao neles
+        // tipo isso pode dar excecao mas n sei se faz sentido ter no codigo se n tiver so apaga essa linha msm if(!tutor.getAnimais().contains(animal)){
+            //throw new AnimalInvalidoException("Animal desconhecido")
+        if(animal == null){//se aquela primeira linha valer isso vira um else if
+            throw new AnimalInvalidoException("Digite um animal valido");}
+        else tutor.adicionarAnimal(animal); //excecao neles
     }
 
     //listagens -------------------------------------------------------
