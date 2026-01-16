@@ -13,9 +13,12 @@ public class CadastroClientes {
 
     //cadastros -------------------------------------------------------
     public void cadastrarTutor(Tutor tutor){
-        tutores.add(tutor); //excecao neles
+        if(tutor == null){
+            throw new TutorInvalidoException("Digite um tutor valido");}
+       else tutores.add(tutor); //excecao neles
     }
     public void cadastrarAnimal(Animal animal, Tutor tutor){
+        
         tutor.adicionarAnimal(animal); //excecao neles
     }
 
