@@ -12,6 +12,8 @@ import static cadastro.CadastroFuncionarios.getVeterinarios;
 public class PainelF extends JPanel{
     public static CardLayout Carta = new CardLayout();
     public static JPanel painelPrincipal = new JPanel(Carta);
+    public static TabelaFuncionarios tabelaF = new TabelaFuncionarios(getVeterinarios());
+
     public PainelF(){
         this.setBackground(Color.blue);
         this.setLayout(new BorderLayout());
@@ -37,7 +39,7 @@ public class PainelF extends JPanel{
         btnCard2.addActionListener(e -> Carta.show(painelPrincipal, "Card 2"));
 
         card1.add(new JLabel("Listagem"),BorderLayout.NORTH);
-        card1.add(new TabelaFuncionarios(getVeterinarios()), BorderLayout.CENTER);
+        card1.add(tabelaF, BorderLayout.CENTER);
         card1.add(btnCard2,BorderLayout.SOUTH);
         card2.add(new JLabel("Cadastro"),BorderLayout.NORTH);
         card2.add(new inserirFuncionario(), BorderLayout.CENTER);

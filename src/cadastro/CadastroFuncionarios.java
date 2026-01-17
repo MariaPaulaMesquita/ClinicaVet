@@ -13,7 +13,7 @@ public class CadastroFuncionarios {
         return veterinarios;
     }
     //cadastros -------------------------------------------------------
-    public void cadastrarVeterinario(Veterinario vet) {
+    public static void cadastrarVeterinario(Veterinario vet) {
         if(vet==null){
             throw new VeterinarioInvalidoException("Digite um veterinario valido");}
         veterinarios.add(vet);
@@ -21,7 +21,7 @@ public class CadastroFuncionarios {
 
     //listagens -------------------------------------------------------
     //TODO listar funcionarios
-    public void listarVeterinarios() {
+    public static void listarVeterinarios() {
         System.out.println("---------------\nVETERINÁRIOS: \n---------------");
         if (veterinarios.isEmpty()) {
             System.out.println("Nenhum veterinário cadastrado.");
