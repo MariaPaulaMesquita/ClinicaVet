@@ -1,6 +1,7 @@
 package servicos;
 
 import animais.*;
+import excecoes.EspecieInvalidaException;
 import pessoas.Tratamento;
 import pessoas.Tutor;
 import pessoas.Veterinario;

@@ -66,7 +66,7 @@ public class Tutor extends pessoas.Pessoa implements Comparable<Tutor>{
 
                 //para cachorros
                 if(especie.equalsIgnoreCase("Cachorro")) {
-                    System.out.println(cachorro.getPorte());
+                    System.out.println("    Porte: " + cachorro.getPorte());
                 }
 
                 qtdAnimal++;

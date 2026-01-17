@@ -1,7 +1,9 @@
 package cadastro;
 
 import animais.Animal;
+import excecoes.ServicoInvalidoException;
 import pessoas.Tutor;
+import pessoas.Veterinario;
 import servicos.Servico;
 
 import java.time.LocalDateTime;
@@ -14,7 +16,7 @@ public class CadastroAgendamentos {
     //cadastro -------------------------------------------------------
     public void agendarServico(Servico servico){
         if(servico==null){
-            throw new ServicoInvalidoException ("Digite um serviço valido");}
+            throw new ServicoInvalidoException("Digite um serviço valido");}
        else servicosAgendados.add(servico);
         servico.getVeterinario().adicionarAgendamento(servico);//excecao pra vet indisponivel
         servico.getAnimal().getTutor().adicionarAgendamento(servico);//excecao pra animal indisponivel
@@ -35,6 +37,7 @@ public class CadastroAgendamentos {
     //listagens -------------------------------------------------------
 
     public void listarAgendamentosDoTutor(Tutor tutor){
+        System.out.println("---------------\nAGENDAMENTOS: \n---------------");
         double valorTotal = 0.0;
         for(Servico s : servicosAgendados){
             if (s.getAnimal().getTutor().equals(tutor)){
@@ -44,26 +47,50 @@ public class CadastroAgendamentos {
                 s.mostrarDataHora();
                 System.out.println(" - Animal: " + s.getAnimal().getNome());
                 System.out.println("Valor: " + s.getValorBase());
-                System.out.println("--------------------------");
+                System.out.println("---------------");
                 valorTotal += s.getValorBase();
             }
         }
         System.out.println("Valor Total: " + valorTotal);
-
+        System.out.println("---------------");
     }
+
     public void listarAgendamentosDoAnimal(Animal a){
+        System.out.println("---------------\nAGENDAMENTOS: \n---------------");
         double valorTotal = 0.0;
         for(Servico s : servicosAgendados){
             if (s.getAnimal().equals(a)){
-                System.out.println("Animal: " + a.getNome() + " - Tutor: " + a.getTutor());
+                System.out.println("Animal: " + a.getNome() + " - Tutor: " + a.getTutor().getNome());
                 System.out.println("Serviços agendados: ");
                 System.out.print(s.tipoServico() + " - ");
                 s.mostrarDataHora();
+                System.out.println();
+                System.out.println("---------------");
                 valorTotal += s.getValorBase();
-            } System.out.println("Valor Total: " + valorTotal);
+            }
+            System.out.println("Valor Total: " + valorTotal);
+            System.out.println("---------------");
         }
     }
 
+    public void listarAgendamentosDoVeterinario(Veterinario vet){
+        System.out.println("---------------\nAGENDAMENTOS: \n---------------");
+        double valorTotal = 0.0;
+        for(Servico s : servicosAgendados){
+            if (s.getVeterinario().equals(vet)){
+                System.out.println("Veterinário: " + vet.getNome());
+                System.out.println("Serviços agendados: ");
+                System.out.print(s.tipoServico() + " - ");
+                s.mostrarDataHora();
+                System.out.println(" - Animal: " + s.getAnimal().getNome() + " - Tutor: " + s.getAnimal().getTutor().getNome());
+                System.out.println("Valor: " + s.getValorBase());
+                System.out.println("---------------");
+                valorTotal += s.getValorBase();
+            }
+        }
+        System.out.println("Valor Total: " + valorTotal);
+        System.out.println("---------------");
+    }
     //TODO listar agendamentos de cada um
 
 
