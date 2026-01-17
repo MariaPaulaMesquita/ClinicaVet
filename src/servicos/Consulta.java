@@ -6,9 +6,9 @@ import pessoas.Veterinario;
 import pessoas.Tutor;
 
 public class Consulta extends Servico implements Preco{
-    public Consulta(LocalDateTime dataHora, Animal animal, Veterinario veterinario) {
-        super(dataHora, animal, veterinario); // valor base da consulta
-        this.valorBase=120.0;
+    public Consulta(LocalDateTime dataHoraInicio, Animal animal, Veterinario veterinario) {
+        super(dataHoraInicio, dataHoraInicio.plusMinutes(20), animal, veterinario); // valor base da consulta
+        this.valorBase = 120.0;
     }
 
     @Override

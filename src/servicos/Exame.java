@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 public class Exame extends Servico implements Preco{
     private String nomeExame;
 
-    Exame(LocalDateTime dataHora, Animal animal, Veterinario veterinario, String nomeExame){
-        super(dataHora, animal, veterinario);
+    Exame(LocalDateTime dataHoraInicio, LocalDateTime dataHoraFinal, Animal animal, Veterinario veterinario, String nomeExame){
+        super(dataHoraInicio, dataHoraFinal, animal, veterinario);
         this.nomeExame = nomeExame;
         this.valorBase = TiposExames.exames.get(nomeExame);
     }
