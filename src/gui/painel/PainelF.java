@@ -1,6 +1,5 @@
 package gui.painel;
 
-import gui.lib.RXCardLayout;
 import gui.painel.cadastro.inserirFuncionario;
 import gui.painel.tabela.TabelaFuncionarios;
 
