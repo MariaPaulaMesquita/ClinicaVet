@@ -94,22 +94,4 @@ public class TabelaTutores extends JPanel {
 
         return sb.toString();
     }
-
-    // Método para atualizar a tabela com novos dados
-    public void atualizarTabela(Tutor[] tutores) {
-        modelo.setRowCount(0); // Limpa a tabela
-
-        for (Tutor t : tutores) {
-            Object[] linha = {
-                    t.getNome(),
-                    t.getCpf(),
-                    t.getTelefone(),
-                    t.getEndereco(),
-                    t.getTratamento() != null ? t.getTratamento().toString() : "Não definido",
-                    t.getAnimais().size(),
-                    formatarAnimais(t.getAnimais())
-            };
-            modelo.addRow(linha);
-        }
-    }
 }
