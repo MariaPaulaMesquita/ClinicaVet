@@ -8,6 +8,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static cadastro.CadastroFuncionarios.getVeterinarios;
+import static gui.painel.PainelF.tabelaF;
+import static gui.painel.cadastro.inserirFuncionario.atualizarTabelaF;
+
 public class verFuncionarios extends JButton {
     public verFuncionarios(){
         //ImageIcon pata = new ImageIcon("src/gui/img/paw.png");
@@ -18,7 +22,9 @@ public class verFuncionarios extends JButton {
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 JFrame Funcionarios = new Funcionarios();
+                atualizarTabelaF(tabelaF,getVeterinarios());
             }
         });
     }
