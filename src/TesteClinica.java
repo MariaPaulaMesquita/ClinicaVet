@@ -1,4 +1,5 @@
 import animais.*;
+import gui.Tela;
 import pessoas.Pessoa;
 import pessoas.Tratamento;
 import pessoas.Tutor;
@@ -33,7 +34,7 @@ public class TesteClinica {
         agendamentos.listarAgendamentosDoAnimal(a1);
         agendamentos.listarAgendamentosDoVeterinario(v1);
 
-
+        Tela frame = new Tela();
 
     }
 }
