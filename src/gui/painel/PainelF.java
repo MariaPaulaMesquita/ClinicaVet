@@ -1,5 +1,7 @@
 package gui.painel;
 
+import gui.lib.RXCardLayout;
+import gui.painel.cadastro.inserirFuncionario;
 import gui.painel.tabela.TabelaFuncionarios;
 
 import javax.swing.*;
@@ -9,16 +11,16 @@ import static cadastro.CadastroFuncionarios.getVeterinarios;
 
 
 public class PainelF extends JPanel{
+    public static CardLayout Carta = new CardLayout();
+    public static JPanel painelPrincipal = new JPanel(Carta);
     public PainelF(){
         this.setBackground(Color.blue);
         this.setLayout(new BorderLayout());
 
-        CardLayout Carta = new CardLayout();
-        JPanel painelPrincipal = new JPanel(Carta);
         this.add(painelPrincipal, BorderLayout.CENTER);
 
         //JPanel y = new JPanel();
-        JPanel z = new JPanel();
+        //JPanel z = new JPanel();
 
         JPanel card1 = criarCard1();
         card1.setLayout(new BorderLayout());
@@ -39,7 +41,7 @@ public class PainelF extends JPanel{
         card1.add(new TabelaFuncionarios(getVeterinarios()), BorderLayout.CENTER);
         card1.add(btnCard2,BorderLayout.SOUTH);
         card2.add(new JLabel("Cadastro"),BorderLayout.NORTH);
-        card2.add(z, BorderLayout.CENTER);
+        card2.add(new inserirFuncionario(), BorderLayout.CENTER);
         card2.add(btnCard1,BorderLayout.SOUTH);
         //TODO a tela de cadastro e implementar a tabela
     }
