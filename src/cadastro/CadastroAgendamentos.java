@@ -11,8 +11,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class CadastroAgendamentos {
-    public Set<Servico> servicosAgendados = new TreeSet<>();
-
+    public static Set<Servico> servicosAgendados = new TreeSet<>();
+    public static Set<Servico> getServicosAgendados(){
+        return servicosAgendados;
+    }
     //cadastro -------------------------------------------------------
     public void agendarServico(Servico servico){
         if(servico==null){

@@ -8,8 +8,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class CadastroFuncionarios {
-    public Set<Veterinario> veterinarios = new TreeSet<>();
-
+    public static Set<Veterinario> veterinarios = new TreeSet<>();
+    public static Set<Veterinario> getVeterinarios(){
+        return veterinarios;
+    }
     //cadastros -------------------------------------------------------
     public void cadastrarVeterinario(Veterinario vet) {
         if(vet==null){

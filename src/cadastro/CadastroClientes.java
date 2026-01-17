@@ -11,8 +11,10 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class CadastroClientes {
-    public Set<Tutor> tutores = new TreeSet<>() ;
-
+    public static Set<Tutor> tutores = new TreeSet<>() ;
+    public static Set<Tutor> getTutores(){
+        return tutores;
+    }
     //cadastros -------------------------------------------------------
     public void cadastrarTutor(Tutor tutor){
         if(tutor == null){
