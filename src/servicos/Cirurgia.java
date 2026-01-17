@@ -10,16 +10,16 @@ import java.time.LocalDateTime;
 
 public class Cirurgia extends Servico implements Preco{
     private String nomeCirurgia;
-    public Cirurgia(LocalDateTime dataHora, Animal animal, Veterinario veterinario, String nomeCirurgia){
-        super(dataHora, animal, veterinario);
+    public Cirurgia(LocalDateTime dataHoraInicio, LocalDateTime dataHoraFinal, Animal animal, Veterinario veterinario, String nomeCirurgia){
+        super(dataHoraInicio, dataHoraFinal, animal, veterinario);
         this.nomeCirurgia = nomeCirurgia;
-        String especie= descobrirEspecie(animal);
+        String especie = descobrirEspecie(animal);
         this.valorBase = TiposCirurgia.getPreco(especie, nomeCirurgia);
 
     }
-    public Cirurgia(LocalDateTime dataHora, Animal animal, Veterinario veterinario, String nomeCirurgia, double valorBase){
-        super(dataHora, animal, veterinario);
-        this.nomeCirurgia=nomeCirurgia;
+    public Cirurgia(LocalDateTime dataHoraInicio, LocalDateTime dataHoraFinal, Animal animal, Veterinario veterinario, String nomeCirurgia, double valorBase){
+        super(dataHoraInicio, dataHoraFinal, animal, veterinario);
+        this.nomeCirurgia = nomeCirurgia;
         this.valorBase = valorBase;
 
     }

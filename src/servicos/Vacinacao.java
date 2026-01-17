@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 public class Vacinacao extends Servico implements Preco{
     private String nomeVacina;
 
-    Vacinacao(LocalDateTime dataHora, Animal animal, Veterinario veterinario, String nomeVacina){
-        super(dataHora, animal, veterinario);
+    Vacinacao(LocalDateTime dataHoraInicio, Animal animal, Veterinario veterinario, String nomeVacina){
+        super(dataHoraInicio, dataHoraInicio.plusMinutes(10), animal, veterinario);
         this.nomeVacina = nomeVacina;
         this.valorBase = TiposVacinas.vacinas.get(nomeVacina);
     }

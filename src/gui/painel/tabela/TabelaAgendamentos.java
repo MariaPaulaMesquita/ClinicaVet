@@ -36,7 +36,7 @@ public class TabelaAgendamentos extends JPanel {
             for (Servico s : servicos) {
                 Object[] linha = {
                         s.tipoServico(),
-                        s.getDataHora().format(formatter),
+                        s.getDataHoraInicio().format(formatter),
                         s.getAnimal().getNome(),
                         s.getAnimal().getTutor().getNome(),
                         s.getVeterinario().getNome(),
@@ -90,7 +90,7 @@ public class TabelaAgendamentos extends JPanel {
             for (Servico s : servicos) {
                 Object[] linha = {
                         s.tipoServico(),
-                        s.getDataHora().format(formatter),
+                        s.getDataHoraInicio().format(formatter),
                         s.getAnimal().getNome(),
                         s.getAnimal().getTutor().getNome(),
                         s.getVeterinario().getNome(),
