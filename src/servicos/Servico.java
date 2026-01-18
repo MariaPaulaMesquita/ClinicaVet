@@ -37,6 +37,11 @@ public abstract class Servico implements Comparable<Servico> {
     public void mostrarDataHoraFinal(){
         System.out.print("Dia: "+ getDataHoraFinal().getDayOfMonth() +"/" + getDataHoraFinal().getMonthValue() + ", Horário: " + getDataHoraFinal().getHour() + ":" + getDataHoraFinal().getMinute());
     }
+    public boolean conflitaCom(LocalDateTime inicio, LocalDateTime fim) {
+        return inicio.isBefore(this.dataHoraFinal) &&
+                fim.isAfter(this.dataHoraInicio);
+    }
+
 
     //gets e sets
     public LocalDateTime getDataHoraInicio() {
