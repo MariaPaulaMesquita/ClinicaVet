@@ -1,5 +1,6 @@
 package gui.painel.cadastro;
 
+import cadastro.CadastroClientes;
 import excecoes.CpfInvalidoException;
 import excecoes.NomeInvalidoException;
 import excecoes.TutorInvalidoException;
@@ -97,7 +98,6 @@ public class InserirTutores extends JPanel {
 
     private void acaoCadastro() {
         try {
-            // Validações básicas antes de criar o objeto
             if (txtNome.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this,
                         "Digite o nome do tutor!",
@@ -143,6 +143,7 @@ public class InserirTutores extends JPanel {
 
             // Cadastrar tutor - pode lançar TutorInvalidoException
             cadastrarTutor(novoTutor);
+            CadastroClientes.salvarTutores();
 
             // Atualiza tabela de tutores
             Object[] linha = {

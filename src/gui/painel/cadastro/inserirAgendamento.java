@@ -3,6 +3,7 @@ package gui.painel.cadastro;
 import animais.Animal;
 import animais.Cachorro;
 import animais.Gato;
+import cadastro.CadastroAgendamentos;
 import excecoes.AnimalIndisponivelException;
 import excecoes.ServicoInvalidoException;
 import excecoes.VeterinarioIndisponivelException;
@@ -357,6 +358,7 @@ public class inserirAgendamento extends JPanel {
 
             if (novoServico != null) {
                 agendarServico(novoServico);
+                CadastroAgendamentos.salvarAgendamentos();
 
                 // Atualiza a tabela
                 tabelaAG.atualizarTabelaAG(getServicosAgendados());

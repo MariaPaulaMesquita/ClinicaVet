@@ -3,6 +3,7 @@ package gui.painel.cadastro;
 import animais.Animal;
 import animais.Cachorro;
 import animais.Gato;
+import cadastro.CadastroClientes;
 import excecoes.AnimalInvalidoException;
 import excecoes.NomeInvalidoException;
 import gui.Alerta;
@@ -332,6 +333,7 @@ public class inserirAnimal extends JPanel {
 
             if (novoAnimal != null && tutor != null) {
                 cadastrarAnimal(novoAnimal, tutor);
+                CadastroClientes.salvarAnimais();
 
                 // Atualiza a tabela
                 tabelaAN.atualizarTabelaAN(getTodosAnimais());

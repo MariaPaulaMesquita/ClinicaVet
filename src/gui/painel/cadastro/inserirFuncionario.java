@@ -1,5 +1,6 @@
 package gui.painel.cadastro;
 
+import cadastro.CadastroFuncionarios;
 import gui.Alerta;
 import gui.painel.tabela.TabelaFuncionarios;
 import pessoas.Veterinario;
@@ -160,6 +161,7 @@ public class inserirFuncionario extends JPanel {
             );
 
             cadastrarVeterinario(vet);
+            CadastroFuncionarios.salvarVeterinarios();
 
             // Atualiza a tabela usando a instância correta
             Set<Veterinario> vets = getVeterinarios();
