@@ -1,9 +1,9 @@
 package gui.painel.cadastro;
 
+import cadastro.CadastroFuncionarios;
 import gui.Alerta;
 import gui.painel.tabela.TabelaFuncionarios;
 import pessoas.Veterinario;
-import cadastro.CadastroFuncionarios;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

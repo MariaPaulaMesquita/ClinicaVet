@@ -1,9 +1,12 @@
 package gui.painel.cadastro;
 
+import cadastro.CadastroClientes;
+import excecoes.CpfInvalidoException;
+import excecoes.NomeInvalidoException;
+import excecoes.TutorInvalidoException;
 import gui.Alerta;
 import pessoas.Tutor;
 import pessoas.Tratamento;
-import cadastro.CadastroClientes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -65,7 +68,7 @@ public class InserirTutores extends JPanel {
 
         // CPF
         gbc.gridx = 0; gbc.gridy = 1; gbc.weightx = 0;
-        painelCampos.add(new JLabel("CPF:"), gbc);
+        painelCampos.add(new JLabel("CPF (11 dígitos):"), gbc);
         gbc.gridx = 1; gbc.weightx = 1.0;
         painelCampos.add(txtCpf, gbc);
 
@@ -95,37 +98,51 @@ public class InserirTutores extends JPanel {
 
     private void acaoCadastro() {
         try {
-            // Validações
+            // Validações básicas antes de criar o objeto
             if (txtNome.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Digite o nome do tutor!");
+                JOptionPane.showMessageDialog(this,
+                        "Digite o nome do tutor!",
+                        "Campo obrigatório",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             if (txtCpf.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Digite o CPF!");
+                JOptionPane.showMessageDialog(this,
+                        "Digite o CPF!",
+                        "Campo obrigatório",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             if (txtTelefone.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Digite o telefone!");
+                JOptionPane.showMessageDialog(this,
+                        "Digite o telefone!",
+                        "Campo obrigatório",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             if (txtEndereco.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Digite o endereço!");
+                JOptionPane.showMessageDialog(this,
+                        "Digite o endereço!",
+                        "Campo obrigatório",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             Tratamento tratamento = (Tratamento) comboTratamento.getSelectedItem();
 
+            // Criar tutor - pode lançar NomeInvalidoException ou CpfInvalidoException
             Tutor novoTutor = new Tutor(
-                    txtNome.getText(),
-                    txtCpf.getText(),
-                    txtTelefone.getText(),
-                    txtEndereco.getText(),
+                    txtNome.getText().trim(),
+                    txtCpf.getText().trim(),
+                    txtTelefone.getText().trim(),
+                    txtEndereco.getText().trim(),
                     tratamento
             );
 
+            // Cadastrar tutor - pode lançar TutorInvalidoException
             cadastrarTutor(novoTutor);
             CadastroClientes.salvarTutores();
 
@@ -157,9 +174,29 @@ public class InserirTutores extends JPanel {
             new Alerta("Tutor cadastrado com sucesso!");
             CartaT.show(painelPrincipalT, "Card 1");
 
-        } catch (Exception e) {
+        } catch (NomeInvalidoException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro no nome: " + e.getMessage(),
+                    "Nome inválido",
+                    JOptionPane.ERROR_MESSAGE);
+            txtNome.requestFocus();
+
+        } catch (CpfInvalidoException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro no CPF: " + e.getMessage(),
+                    "CPF inválido",
+                    JOptionPane.ERROR_MESSAGE);
+            txtCpf.requestFocus();
+
+        } catch (TutorInvalidoException e) {
             JOptionPane.showMessageDialog(this,
                     "Erro ao cadastrar tutor: " + e.getMessage(),
+                    "Tutor inválido",
+                    JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro inesperado ao cadastrar tutor: " + e.getMessage(),
                     "Erro",
                     JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
