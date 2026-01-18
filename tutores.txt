@@ -1,2 +1,3 @@
 Maria;10575614567;85986970704;Av. Bezerra de Menezes, Parquelândia - Fortaleza;MENSALISTA
+José Antônio SIlva;45863459748;88986548952;Rua São Paulo;MENSALISTA
 Marcio;76878954369;85986895932;Sargento Hermínio - Fortaleza;TRADICIONAL

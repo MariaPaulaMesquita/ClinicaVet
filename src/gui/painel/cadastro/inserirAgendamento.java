@@ -1,5 +1,6 @@
 package gui.painel.cadastro;
 
+import cadastro.CadastroAgendamentos;
 import gui.Alerta;
 import gui.painel.tabela.TabelaAgendamentos;
 import servicos.*;
@@ -154,6 +155,7 @@ public class inserirAgendamento extends JPanel {
 
             if (novoServico != null) {
                 agendarServico(novoServico);
+                CadastroAgendamentos.salvarAgendamentos();
 
                 // Atualiza a tabelaT corretamente
                 tabelaAG.atualizarTabelaAG(getServicosAgendados());

@@ -3,6 +3,7 @@ package gui.painel.cadastro;
 import gui.Alerta;
 import pessoas.Tutor;
 import pessoas.Tratamento;
+import cadastro.CadastroClientes;
 
 import javax.swing.*;
 import java.awt.*;
@@ -126,6 +127,7 @@ public class InserirTutores extends JPanel {
             );
 
             cadastrarTutor(novoTutor);
+            CadastroClientes.salvarTutores();
 
             // Atualiza tabela de tutores
             Object[] linha = {

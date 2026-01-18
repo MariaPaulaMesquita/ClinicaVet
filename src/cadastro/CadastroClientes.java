@@ -91,7 +91,7 @@ public class CadastroClientes {
      return null;
  }
 
-    public void salvarTutores() {
+    public static void salvarTutores() {
         try (PrintWriter pw = new PrintWriter(new FileWriter("tutores.txt"))) {
 
             for (Tutor t : tutores) {
@@ -108,7 +108,7 @@ public class CadastroClientes {
             System.out.println("Erro ao salvar tutores.");
         }
     }
-    public void carregarTutores() {
+    public static void carregarTutores() {
         try (BufferedReader br = new BufferedReader(new FileReader("tutores.txt"))) {
 
             String linha;
@@ -131,7 +131,7 @@ public class CadastroClientes {
             System.out.println("Arquivo de tutores não encontrado.");
         }
     }
-    public void salvarAnimais() {
+    public static void salvarAnimais() {
         try (PrintWriter pw = new PrintWriter(new FileWriter("animais.txt"))) {
             for (Tutor t : tutores) {
                 for (Animal a : t.getAnimais()) {
@@ -167,7 +167,7 @@ public class CadastroClientes {
             System.out.println("Erro ao salvar animais.");
         }
     }
-    public void carregarAnimais() {
+    public static void carregarAnimais() {
         try (BufferedReader br = new BufferedReader(new FileReader("animais.txt"))) {
 
             String linha;
@@ -209,7 +209,7 @@ public class CadastroClientes {
             System.out.println("Arquivo de animais não encontrado.");
         }
     }
-    public void salvarTudo() {
+    public static void salvarTudo() {
         salvarTutores();
         salvarAnimais();
     }

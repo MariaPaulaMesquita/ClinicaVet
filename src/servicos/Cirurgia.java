@@ -46,4 +46,12 @@ public class Cirurgia extends Servico implements Preco{
     public String tipoServico() {
         return nomeCirurgia + " em " + descobrirEspecie(animal);
     }
+
+    public String getNomeCirurgia() {
+        return nomeCirurgia;
+    }
+
+    public void setNomeCirurgia(String nomeCirurgia) {
+        this.nomeCirurgia = nomeCirurgia;
+    }
 }

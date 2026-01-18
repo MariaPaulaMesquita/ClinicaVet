@@ -48,7 +48,7 @@ public class CadastroFuncionarios {
         return null;
     }
 
-    public void salvarVeterinarios() {
+    public static void salvarVeterinarios() {
         try (PrintWriter pw = new PrintWriter(new FileWriter("veterinarios.txt"))) {
             for (Veterinario v : veterinarios) {
                 pw.println(
@@ -65,7 +65,7 @@ public class CadastroFuncionarios {
             System.out.println("Erro ao salvar veterinários.");
         }
     }
-    public void carregarVeterinarios() {
+    public static void carregarVeterinarios() {
         try (BufferedReader br = new BufferedReader(new FileReader("veterinarios.txt"))) {
             String linha;
             while ((linha = br.readLine()) != null) {

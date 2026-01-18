@@ -1,3 +1,4 @@
 Gato;Lino;macho;2025-02-20;SRD;preto;false;10575614567
+Gato;Laila;F;2025-11-03;siamês;siamês;false;45863459748
 Cachorro;Mulan;femea;2020-03-01;SRD;branca com manchas pretas;grande;76878954369
 Gato;Pingo;macho;2017-08-14;SRD;branco;false;76878954369

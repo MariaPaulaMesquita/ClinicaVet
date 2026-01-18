@@ -5,6 +5,7 @@ import animais.Cachorro;
 import animais.Gato;
 import gui.Alerta;
 import pessoas.Tutor;
+import cadastro.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -291,6 +292,8 @@ public class inserirAnimal extends JPanel {
                 cadastrarAnimal(novoAnimal, tutor);
 
                 System.out.println("Animal cadastrado com sucesso!"); // DEBUG
+
+                CadastroClientes.salvarAnimais();
 
                 // Atualiza a tabela
                 tabelaAN.atualizarTabelaAN(getTodosAnimais());
