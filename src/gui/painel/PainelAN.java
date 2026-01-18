@@ -34,26 +34,31 @@ public class PainelAN extends JPanel {
         btnCard1.addActionListener(e -> CartaAN.show(painelPrincipalAN, "Card 1"));
         btnCard2.addActionListener(e -> CartaAN.show(painelPrincipalAN, "Card 2"));
 
-        // CRIA A INSTÂNCIA UMA ÚNICA VEZ AQUI
+        // CRIA A INSTÂNCIA
         tabelaAN = new TabelaAnimais(getTodosAnimais());
 
-        card1.add(new JLabel("Listagem"), BorderLayout.NORTH);
-        card1.add(tabelaAN, BorderLayout.CENTER); // USA A MESMA INSTÂNCIA
+        //titulo novo
+        JLabel titulo = new JLabel("Listagem de Animais");
+        titulo.setHorizontalAlignment(SwingConstants.CENTER);
+        titulo.setFont(new Font("Arial", Font.BOLD, 16));
+
+        card1.add(titulo, BorderLayout.NORTH);
+        card1.add(tabelaAN, BorderLayout.CENTER);
         card1.add(btnCard2, BorderLayout.SOUTH);
-        card2.add(new JLabel("Cadastro"), BorderLayout.NORTH);
+        card2.add(new JLabel("  "), BorderLayout.NORTH);
         card2.add(new inserirAnimal(), BorderLayout.CENTER);
         card2.add(btnCard1, BorderLayout.SOUTH);
     }
 
     private JPanel criarCard1() {
         JPanel painel = new JPanel();
-        painel.setBackground(Color.PINK);
+        painel.setBackground(new Color(255, 179, 179));
         return painel;
     }
 
     private JPanel criarCard2() {
         JPanel painel = new JPanel();
-        painel.setBackground(Color.CYAN);
+        painel.setBackground(new Color(225, 145, 145));
         return painel;
     }
 }

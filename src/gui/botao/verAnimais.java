@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static cadastro.CadastroClientes.getTodosAnimais;
+import static gui.painel.PainelAN.tabelaAN;
+
 public class verAnimais extends JButton {
     public verAnimais(){
         //ImageIcon pata = new ImageIcon("src/gui/img/paw.png");
@@ -19,6 +22,7 @@ public class verAnimais extends JButton {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame Animais = new Animais();
+                tabelaAN.atualizarTabelaAN(getTodosAnimais());
             }
         });
 

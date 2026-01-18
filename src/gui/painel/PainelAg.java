@@ -34,27 +34,32 @@ public class PainelAg extends JPanel {
         btnCard1.addActionListener(e -> CartaAG.show(painelPrincipalAG, "Card 1"));
         btnCard2.addActionListener(e -> CartaAG.show(painelPrincipalAG, "Card 2"));
 
-        // Cria a tabelaT UMA ÚNICA VEZ e usa a mesma instância
+        // Cria a tabela
         tabelaAG = new TabelaAgendamentos(getServicosAgendados());
 
-        card1.add(new JLabel("Listagem"), BorderLayout.NORTH);
-        card1.add(tabelaAG, BorderLayout.CENTER); // USA A MESMA INSTÂNCIA
+        //titulo noov fi
+        JLabel titulo = new JLabel("Listagem de Agendamentos");
+        titulo.setHorizontalAlignment(SwingConstants.CENTER);
+        titulo.setFont(new Font("Arial", Font.BOLD, 16));
+
+        card1.add(titulo, BorderLayout.NORTH);
+        card1.add(tabelaAG, BorderLayout.CENTER);
         card1.add(btnCard2, BorderLayout.SOUTH);
 
-        card2.add(new JLabel("Cadastro"), BorderLayout.NORTH);
+        card2.add(new JLabel("  "), BorderLayout.NORTH);
         card2.add(new inserirAgendamento(), BorderLayout.CENTER);
         card2.add(btnCard1, BorderLayout.SOUTH);
     }
 
     private JPanel criarCard1() {
         JPanel painel = new JPanel();
-        painel.setBackground(Color.PINK);
+        painel.setBackground(new Color(179, 189, 255));
         return painel;
     }
 
     private JPanel criarCard2() {
         JPanel painel = new JPanel();
-        painel.setBackground(Color.CYAN);
+        painel.setBackground(new Color(135, 150, 255));
         return painel;
     }
 }
