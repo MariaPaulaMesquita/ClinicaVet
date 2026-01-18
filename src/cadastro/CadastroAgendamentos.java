@@ -15,17 +15,32 @@ public class CadastroAgendamentos {
     public static Set<Servico> getServicosAgendados(){
         return servicosAgendados;
     }
+// Metodos para as exceções------------------------------------------
+private static void verificarDisponibilidadeVeterinario(Servico servico) throws VeterinarioIndisponivelException{
+     for(Servico s: servicosAgendados){
+        if(s.getVeterinario().equals(servico.getVeterinario()){
+           if(s.compareTo(servico)==-1 && s.getDataHoraFinal().isAfter(servico.getDataHoraInicio()){
+               throw new VeterinarioIndisponivelException(O veterinario não esta disponivel);
+               break;}}}}
+    private static void verificarDisponibilidadeAnimal(Servico servico) throws AnimalIndisponivelException{
+     for(Servico s: servicosAgendados){
+        if(s.getAnimal().equals(servico.getAnimal()){
+           if(s.compareTo(servico)==-1 && s.getDataHoraFinal().isAfter(servico.getDataHoraInicio()){
+               throw new AnimalIndisponivelException(O seu animal ja tem uma consulta durante esse horario);
+               break;}}}}
+    
+
+    
     //cadastro -------------------------------------------------------
-    public static void agendarServico(Servico servico){
+    public static void agendarServico(Servico servico) throws VeterinarioIndisponivelException , AnimalIndisponivelException{
         if(servico==null){
             throw new ServicoInvalidoException("Digite um serviço valido");}
-       else servicosAgendados.add(servico);
-         //for(Servico s: servicosAgendados){
-        //if(s.getVeterinario().equals(servico.getVeterinario()) && servico.getDataHora().equals(s.getDataHora()){throw new VeterinarioIndisponivelException("Veterinario nao esta disponivel);}
-       servico.getVeterinario().adicionarAgendamento(servico);//excecao pra vet indisponivel
-        //for(Servico s: servicosAgendados){
-        //if(s.get
-        servico.getAnimal().getTutor().adicionarAgendamento(servico);//excecao pra animal indisponivel
+       verificarDisponibilidadeVeterinario(servico);
+        verificarDisponibilidadeAnimal(servico);
+         
+        servicosAgendados.add(servico);
+        servico.getVeterinario().adicionarAgendamento(servico);
+        servico.getAnimal().getTutor().adicionarAgendamento(servico);
     }
 
     //mudanças -------------------------------------------------------
@@ -36,9 +51,12 @@ public class CadastroAgendamentos {
     public void alterarDataServico(Servico servico, LocalDateTime dataNovaInicio, LocalDateTime dataNovaFinal){
         if(servico == null || !servicosAgendados.contains(servico)){
             throw new ServicoInvalidoException("Seu serviço não tinha sido agendado previamente por favor agende-o");}
-       else{
-           servico.setDataHoraInicio(dataNovaInicio);
-           servico.setDataHoraFinal(dataNovaFinal); // excecao neles pq tem q ver se o vet e o animal vai estar disponivel
+           Servico s = new Servico(//ajeitar os bichos dentro);
+        verificarDisponibilidadeVeterinario(s);
+         verificarDisponibilidadeAnimal(s);
+        
+        servico.setDataHoraInicio(dataNovaInicio);
+           servico.setDataHoraFinal(dataNovaFinal);
         }
     }
 
