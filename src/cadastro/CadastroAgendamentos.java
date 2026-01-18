@@ -48,7 +48,7 @@ private static void verificarDisponibilidadeVeterinario(Servico servico) throws 
         servico.cancelar();
     }
 
-    public void alterarDataServico(Servico servico, LocalDateTime dataNovaInicio, LocalDateTime dataNovaFinal){
+    public void alterarDataServico(Servico servico, LocalDateTime dataNovaInicio, LocalDateTime dataNovaFinal) throws VeterinarioIndisponivelException , AnimalIndisponivelException{
         if(servico == null || !servicosAgendados.contains(servico)){
             throw new ServicoInvalidoException("Seu serviço não tinha sido agendado previamente por favor agende-o");}
            Servico S = new Servico(LocalDateTime dataNovaInicio, LocalDateTime dataNovaFinal, Animal servico.getAnimal(), Veterinario servico.getVeterinario());
