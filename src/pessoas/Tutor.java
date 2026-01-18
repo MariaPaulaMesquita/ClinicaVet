@@ -17,7 +17,7 @@ public class Tutor extends pessoas.Pessoa implements Comparable<Tutor>{
     }
 
     public int compareTo(Tutor tutor){
-        return this.nome.compareToIgnoreCase(tutor.nome);
+        return this.cpf.compareToIgnoreCase(tutor.cpf);
     }
 
     public Set<Animal> getAnimais() {

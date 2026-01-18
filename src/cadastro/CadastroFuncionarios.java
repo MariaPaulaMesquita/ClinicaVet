@@ -4,6 +4,7 @@ import excecoes.VeterinarioInvalidoException;
 import pessoas.Tutor;
 import pessoas.Veterinario;
 
+import java.io.*;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -46,5 +47,45 @@ public class CadastroFuncionarios {
         }
         return null;
     }
+
+    public void salvarVeterinarios() {
+        try (PrintWriter pw = new PrintWriter(new FileWriter("veterinarios.txt"))) {
+            for (Veterinario v : veterinarios) {
+                pw.println(
+                        v.getNome() + ";" +
+                                v.getCpf() + ";" +
+                                v.getTelefone() + ";" +
+                                v.getCrmv() + ";" +
+                                v.getAnoContrato() + ";" +
+                                v.getAnoFormacao()
+                );
+            }
+
+        } catch (IOException e) {
+            System.out.println("Erro ao salvar veterinários.");
+        }
+    }
+    public void carregarVeterinarios() {
+        try (BufferedReader br = new BufferedReader(new FileReader("veterinarios.txt"))) {
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                String[] dados = linha.split(";");
+
+                Veterinario v = new Veterinario(
+                        dados[0],                 // nome
+                        dados[1],                 // cpf
+                        dados[2],                 // telefone
+                        dados[3],                 // crmv
+                        Integer.parseInt(dados[4]),
+                        Integer.parseInt(dados[5])
+                );
+                veterinarios.add(v);
+            }
+
+        } catch (IOException e) {
+            System.out.println("Arquivo de veterinários não encontrado.");
+        }
+    }
+
 
 }
