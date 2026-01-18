@@ -3,6 +3,8 @@ package gui.painel.cadastro;
 import animais.Animal;
 import animais.Cachorro;
 import animais.Gato;
+import excecoes.AnimalInvalidoException;
+import excecoes.NomeInvalidoException;
 import gui.Alerta;
 import pessoas.Tutor;
 
@@ -12,6 +14,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Set;
 
 import static cadastro.CadastroClientes.*;
@@ -26,6 +29,12 @@ public class inserirAnimal extends JPanel {
 
     JComboBox<String> comboTipos;
     JComboBox<String> comboTutores;
+
+    // Radio Buttons para sexo
+    JRadioButton radioMacho;
+    JRadioButton radioFemea;
+    ButtonGroup grupoSexo;
+    JPanel painelSexo;
 
     // Radio Buttons para acesso à rua
     JRadioButton radioAcessoSim;
@@ -42,7 +51,6 @@ public class inserirAnimal extends JPanel {
     static DateTimeFormatter Data = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     JTextField txtNome = new JTextField(30);
-    JTextField txtSexo = new JTextField(30);
     JTextField txtData = new JTextField(30);
     JTextField txtRaca = new JTextField(30);
     JTextField txtPelagem = new JTextField(30);
@@ -79,6 +87,19 @@ public class inserirAnimal extends JPanel {
         comboTutores.addItem("Selecione um tutor...");
         preencherTutores();
         comboTutores.setPreferredSize(new Dimension(200, 25));
+
+        // Inicializa Radio Buttons para sexo
+        radioMacho = new JRadioButton("Macho");
+        radioFemea = new JRadioButton("Fêmea");
+        radioMacho.setSelected(true); // Padrão: Macho
+
+        grupoSexo = new ButtonGroup();
+        grupoSexo.add(radioMacho);
+        grupoSexo.add(radioFemea);
+
+        painelSexo = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        painelSexo.add(radioMacho);
+        painelSexo.add(radioFemea);
 
         // Inicializa Radio Buttons para acesso à rua
         radioAcessoSim = new JRadioButton("Sim");
@@ -129,11 +150,11 @@ public class inserirAnimal extends JPanel {
         gbc.gridx = 1; gbc.weightx = 1.0;
         painelCampos.add(txtNome, gbc);
 
-        // Sexo
+        // Sexo (Radio Buttons)
         gbc.gridx = 0; gbc.gridy = 1; gbc.weightx = 0;
-        painelCampos.add(new JLabel("Sexo (M/F):"), gbc);
+        painelCampos.add(new JLabel("Sexo:"), gbc);
         gbc.gridx = 1; gbc.weightx = 1.0;
-        painelCampos.add(txtSexo, gbc);
+        painelCampos.add(painelSexo, gbc);
 
         // Data de Nascimento
         gbc.gridx = 0; gbc.gridy = 2; gbc.weightx = 0;
@@ -193,6 +214,11 @@ public class inserirAnimal extends JPanel {
         return null;
     }
 
+    // Método para obter o sexo selecionado
+    public String getSexoSelecionado() {
+        return radioMacho.isSelected() ? "M" : "F";
+    }
+
     // Método para obter o valor do acesso à rua
     public boolean getAcessoARua() {
         return radioAcessoSim.isSelected();
@@ -210,100 +236,115 @@ public class inserirAnimal extends JPanel {
             String tipo = getTipoSelecionado();
 
             if (tipo == null) {
-                JOptionPane.showMessageDialog(this, "Selecione um tipo de animal!");
+                JOptionPane.showMessageDialog(this,
+                        "Selecione um tipo de animal!",
+                        "Campo obrigatório",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             if (getTutorSelecionado() == null) {
-                JOptionPane.showMessageDialog(this, "Selecione um tutor!");
+                JOptionPane.showMessageDialog(this,
+                        "Selecione um tutor!",
+                        "Campo obrigatório",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             // Validações dos campos
             if (txtNome.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Digite o nome do animal!");
-                return;
-            }
-
-            if (txtSexo.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Digite o sexo do animal (M/F)!");
+                JOptionPane.showMessageDialog(this,
+                        "Digite o nome do animal!",
+                        "Campo obrigatório",
+                        JOptionPane.WARNING_MESSAGE);
+                txtNome.requestFocus();
                 return;
             }
 
             if (txtData.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Digite a data de nascimento!");
+                JOptionPane.showMessageDialog(this,
+                        "Digite a data de nascimento!",
+                        "Campo obrigatório",
+                        JOptionPane.WARNING_MESSAGE);
+                txtData.requestFocus();
                 return;
             }
 
             if (txtRaca.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Digite a raça!");
+                JOptionPane.showMessageDialog(this,
+                        "Digite a raça!",
+                        "Campo obrigatório",
+                        JOptionPane.WARNING_MESSAGE);
+                txtRaca.requestFocus();
                 return;
             }
 
             if (txtPelagem.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Digite a pelagem!");
+                JOptionPane.showMessageDialog(this,
+                        "Digite a pelagem!",
+                        "Campo obrigatório",
+                        JOptionPane.WARNING_MESSAGE);
+                txtPelagem.requestFocus();
                 return;
             }
 
             // Parse da data
-            LocalDate dataNasc = LocalDate.parse(txtData.getText(), Data);
-            System.out.println("Data parsed: " + dataNasc); // DEBUG
+            LocalDate dataNasc = LocalDate.parse(txtData.getText().trim(), Data);
 
             Animal novoAnimal = null;
 
             if(tipo.equals("Cachorro")){
                 if (txtPorte.getText().trim().isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Digite o porte do cachorro!");
+                    JOptionPane.showMessageDialog(this,
+                            "Digite o porte do cachorro!",
+                            "Campo obrigatório",
+                            JOptionPane.WARNING_MESSAGE);
+                    txtPorte.requestFocus();
                     return;
                 }
 
                 novoAnimal = new Cachorro(
-                        txtNome.getText(),
-                        txtSexo.getText(),
+                        txtNome.getText().trim(),
+                        getSexoSelecionado(),
                         dataNasc.getDayOfMonth(),
                         dataNasc.getMonthValue(),
                         dataNasc.getYear(),
-                        txtRaca.getText(),
-                        txtPelagem.getText(),
-                        txtPorte.getText()
+                        txtRaca.getText().trim(),
+                        txtPelagem.getText().trim(),
+                        txtPorte.getText().trim()
                 );
-                System.out.println("Cachorro criado: " + novoAnimal.getNome()); // DEBUG
 
             } else if(tipo.equals("Gato")){
                 boolean acessoRua = getAcessoARua();
                 novoAnimal = new Gato(
-                        txtNome.getText(),
-                        txtSexo.getText(),
+                        txtNome.getText().trim(),
+                        getSexoSelecionado(),
                         dataNasc.getDayOfMonth(),
                         dataNasc.getMonthValue(),
                         dataNasc.getYear(),
-                        txtRaca.getText(),
-                        txtPelagem.getText(),
+                        txtRaca.getText().trim(),
+                        txtPelagem.getText().trim(),
                         acessoRua
                 );
-                System.out.println("Gato criado: " + novoAnimal.getNome()); // DEBUG
             }
 
             Tutor tutor = pesquisarTutor(getTutorSelecionado());
-            System.out.println("Tutor encontrado: " + (tutor != null ? tutor.getNome() : "NULL")); // DEBUG
 
             if (novoAnimal != null && tutor != null) {
                 cadastrarAnimal(novoAnimal, tutor);
-
-                System.out.println("Animal cadastrado com sucesso!"); // DEBUG
 
                 // Atualiza a tabela
                 tabelaAN.atualizarTabelaAN(getTodosAnimais());
 
                 // Limpa os campos
                 txtNome.setText("");
-                txtSexo.setText("");
                 txtData.setText("");
                 txtRaca.setText("");
                 txtPelagem.setText("");
                 txtPorte.setText("");
                 comboTipos.setSelectedIndex(0);
                 comboTutores.setSelectedIndex(0);
+                radioMacho.setSelected(true);
                 radioAcessoNao.setSelected(true);
 
                 // Limpa o painel de campos
@@ -316,20 +357,43 @@ public class inserirAnimal extends JPanel {
                 CartaAN.show(painelPrincipalAN, "Card 1");
 
             } else {
-                // DEBUG DETALHADO
                 if (novoAnimal == null) {
-                    JOptionPane.showMessageDialog(this, "Erro: Animal não foi criado!");
-                    System.out.println("ERRO: novoAnimal é NULL");
+                    JOptionPane.showMessageDialog(this,
+                            "Erro ao criar o animal!",
+                            "Erro",
+                            JOptionPane.ERROR_MESSAGE);
                 }
                 if (tutor == null) {
-                    JOptionPane.showMessageDialog(this, "Erro: Tutor não encontrado! Verifique se o CPF está correto.");
-                    System.out.println("ERRO: tutor é NULL");
+                    JOptionPane.showMessageDialog(this,
+                            "Tutor não encontrado! Verifique os dados.",
+                            "Erro",
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
 
-        } catch (Exception e) {
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Data inválida! Use o formato dd/MM/yyyy (ex: 15/03/2020)",
+                    "Erro de formato",
+                    JOptionPane.ERROR_MESSAGE);
+            txtData.requestFocus();
+
+        } catch (NomeInvalidoException e) {
+            JOptionPane.showMessageDialog(this,
+                    "Nome inválido: " + e.getMessage(),
+                    "Erro de validação",
+                    JOptionPane.ERROR_MESSAGE);
+            txtNome.requestFocus();
+
+        } catch (AnimalInvalidoException e) {
             JOptionPane.showMessageDialog(this,
                     "Erro ao cadastrar animal: " + e.getMessage(),
+                    "Animal inválido",
+                    JOptionPane.ERROR_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Erro inesperado: " + e.getMessage(),
                     "Erro",
                     JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
