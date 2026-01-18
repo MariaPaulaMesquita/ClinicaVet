@@ -1,9 +1,6 @@
 package pessoas;
 
 import animais.*;
-import servicos.Servico;
-
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 

@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static cadastro.CadastroAgendamentos.getServicosAgendados;
+import static gui.painel.PainelAg.tabelaAG;
+
 public class verAgendamentos extends JButton {
     public verAgendamentos(){
         //ImageIcon pata = new ImageIcon("src/gui/img/paw.png");
@@ -19,6 +22,7 @@ public class verAgendamentos extends JButton {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame Agendamentos = new Agendamentos();
+                tabelaAG.atualizarTabelaAG(getServicosAgendados());
             }
         });
     }

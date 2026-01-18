@@ -34,5 +34,17 @@ public class CadastroFuncionarios {
             System.out.println("CRMV: " + v.getCrmv());
             System.out.println("---------------");
         }
+
     }
+
+    public static Veterinario pesquisarVeterinario(String vet){
+        for(Veterinario v : veterinarios){
+            String veter = v.getNome()+" | "+v.getCrmv();
+            if(veter.equals(vet)){
+                return v;
+            }
+        }
+        return null;
+    }
+
 }

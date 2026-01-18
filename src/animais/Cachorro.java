@@ -1,6 +1,8 @@
 package animais;
 
 import excecoes.IdadeInvalidaException;
+
+import java.time.LocalDate;
 import java.time.Period;
 
 public class Cachorro extends Animal {
@@ -12,6 +14,10 @@ public class Cachorro extends Animal {
     }
     public Cachorro(String nome, String sexo, int mes, int ano, String raca, String pelagem, String porte) {
         super(nome, sexo, mes, ano, raca, pelagem);
+        this.porte = porte;
+    }
+    public Cachorro(String nome, String sexo, LocalDate tempo, String raca, String pelagem, String porte) {
+        super(nome, sexo, tempo, raca, pelagem);
         this.porte = porte;
     }
 

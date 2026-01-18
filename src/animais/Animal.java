@@ -3,9 +3,12 @@ package animais;
 import excecoes.NomeInvalidoException;
 import pessoas.Tutor;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 
 public abstract class Animal implements Comparable<Animal> {
+    protected static int CriarID=0;
+    protected int ID;
     protected String nome;
     protected LocalDate dataNascimento;
     protected String raca;
@@ -21,6 +24,8 @@ public abstract class Animal implements Comparable<Animal> {
         this.dataNascimento = LocalDate.of(ano, mes, 1); //ele assume dia 1.
         this.raca = raca;
         this.pelagem = pelagem;
+        this.ID = CriarID;
+        CriarID++;
     }
 
     // quando sabe dia, mês e ano
@@ -30,7 +35,19 @@ public abstract class Animal implements Comparable<Animal> {
         this.dataNascimento = LocalDate.of(ano, mes, dia);
         this.raca = raca;
         this.pelagem = pelagem;
+        this.ID = CriarID;
+        CriarID++;
     }
+    public Animal(String nome, String sexo, LocalDate tempo, String raca, String pelagem) {
+        this.nome = nome;
+        this.sexo = sexo;
+        this.dataNascimento = tempo;
+        this.raca = raca;
+        this.pelagem = pelagem;
+        this.ID = CriarID;
+        CriarID++;
+    }
+
 
     public int compareTo(Animal animal){
         return this.nome.compareToIgnoreCase(animal.nome);
@@ -95,5 +112,9 @@ public abstract class Animal implements Comparable<Animal> {
     public void setTutor(Tutor tutor) {
         this.tutor = tutor;
     }
+
+    public int getID(){return this.ID; }
+
+    public void setID(int i){ this.ID=i; }
 
 }

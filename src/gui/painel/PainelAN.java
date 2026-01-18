@@ -1,19 +1,23 @@
 package gui.painel;
 
+import gui.painel.cadastro.inserirAnimal;
+import gui.painel.tabela.TabelaAnimais;
+
 import javax.swing.*;
 import java.awt.*;
 
+import static cadastro.CadastroClientes.getTodosAnimais;
+
 public class PainelAN extends JPanel {
+    public static TabelaAnimais tabelaAN; // NÃO INICIALIZA AQUI
+    public static CardLayout CartaAN = new CardLayout();
+    public static JPanel painelPrincipalAN = new JPanel(CartaAN);
+
     public PainelAN(){
         this.setBackground(Color.blue);
         this.setLayout(new BorderLayout());
 
-        CardLayout Carta = new CardLayout();
-        JPanel painelPrincipal = new JPanel(Carta);
-        this.add(painelPrincipal, BorderLayout.CENTER);
-
-        JPanel y = new JPanel();
-        JPanel z = new JPanel();
+        this.add(painelPrincipalAN, BorderLayout.CENTER);
 
         JPanel card1 = criarCard1();
         card1.setLayout(new BorderLayout());
@@ -21,22 +25,24 @@ public class PainelAN extends JPanel {
         JPanel card2 = criarCard2();
         card2.setLayout(new BorderLayout());
 
-        painelPrincipal.add(card1, "Card 1");
-        painelPrincipal.add(card2, "Card 2");
+        painelPrincipalAN.add(card1, "Card 1");
+        painelPrincipalAN.add(card2, "Card 2");
 
         JButton btnCard1 = new JButton("Voltar");
         JButton btnCard2 = new JButton("Cadastrar Novo");
 
-        btnCard1.addActionListener(e -> Carta.show(painelPrincipal, "Card 1"));
-        btnCard2.addActionListener(e -> Carta.show(painelPrincipal, "Card 2"));
+        btnCard1.addActionListener(e -> CartaAN.show(painelPrincipalAN, "Card 1"));
+        btnCard2.addActionListener(e -> CartaAN.show(painelPrincipalAN, "Card 2"));
 
-        card1.add(new JLabel("Listagem"),BorderLayout.NORTH);
-        card1.add(y, BorderLayout.CENTER);
-        card1.add(btnCard2,BorderLayout.SOUTH);
-        card2.add(new JLabel("Cadastro"),BorderLayout.NORTH);
-        card2.add(z, BorderLayout.CENTER);
-        card2.add(btnCard1,BorderLayout.SOUTH);
-        //TODO a tela de cadastro e implementar a tabela
+        // CRIA A INSTÂNCIA UMA ÚNICA VEZ AQUI
+        tabelaAN = new TabelaAnimais(getTodosAnimais());
+
+        card1.add(new JLabel("Listagem"), BorderLayout.NORTH);
+        card1.add(tabelaAN, BorderLayout.CENTER); // USA A MESMA INSTÂNCIA
+        card1.add(btnCard2, BorderLayout.SOUTH);
+        card2.add(new JLabel("Cadastro"), BorderLayout.NORTH);
+        card2.add(new inserirAnimal(), BorderLayout.CENTER);
+        card2.add(btnCard1, BorderLayout.SOUTH);
     }
 
     private JPanel criarCard1() {
@@ -50,6 +56,4 @@ public class PainelAN extends JPanel {
         painel.setBackground(Color.CYAN);
         return painel;
     }
-
-
 }

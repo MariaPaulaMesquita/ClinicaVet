@@ -8,20 +8,16 @@ import java.awt.*;
 
 import static cadastro.CadastroFuncionarios.getVeterinarios;
 
-
 public class PainelF extends JPanel{
-    public static CardLayout Carta = new CardLayout();
-    public static JPanel painelPrincipal = new JPanel(Carta);
-    public static TabelaFuncionarios tabelaF = new TabelaFuncionarios(getVeterinarios());
+    public static CardLayout CartaF = new CardLayout();
+    public static JPanel painelPrincipalF = new JPanel(CartaF);
+    public static TabelaFuncionarios tabelaF; // NÃO INICIALIZA AQUI
 
     public PainelF(){
         this.setBackground(Color.blue);
         this.setLayout(new BorderLayout());
 
-        this.add(painelPrincipal, BorderLayout.CENTER);
-
-        //JPanel y = new JPanel();
-        //JPanel z = new JPanel();
+        this.add(painelPrincipalF, BorderLayout.CENTER);
 
         JPanel card1 = criarCard1();
         card1.setLayout(new BorderLayout());
@@ -29,22 +25,24 @@ public class PainelF extends JPanel{
         JPanel card2 = criarCard2();
         card2.setLayout(new BorderLayout());
 
-        painelPrincipal.add(card1, "Card 1");
-        painelPrincipal.add(card2, "Card 2");
+        painelPrincipalF.add(card1, "Card 1");
+        painelPrincipalF.add(card2, "Card 2");
 
         JButton btnCard1 = new JButton("Voltar");
         JButton btnCard2 = new JButton("Cadastrar Novo");
 
-        btnCard1.addActionListener(e -> Carta.show(painelPrincipal, "Card 1"));
-        btnCard2.addActionListener(e -> Carta.show(painelPrincipal, "Card 2"));
+        btnCard1.addActionListener(e -> CartaF.show(painelPrincipalF, "Card 1"));
+        btnCard2.addActionListener(e -> CartaF.show(painelPrincipalF, "Card 2"));
 
-        card1.add(new JLabel("Listagem"),BorderLayout.NORTH);
-        card1.add(tabelaF, BorderLayout.CENTER);
-        card1.add(btnCard2,BorderLayout.SOUTH);
-        card2.add(new JLabel("Cadastro"),BorderLayout.NORTH);
+        // CRIA A INSTÂNCIA UMA ÚNICA VEZ AQUI
+        tabelaF = new TabelaFuncionarios(getVeterinarios());
+
+        card1.add(new JLabel("Listagem"), BorderLayout.NORTH);
+        card1.add(tabelaF, BorderLayout.CENTER); // USA A MESMA INSTÂNCIA
+        card1.add(btnCard2, BorderLayout.SOUTH);
+        card2.add(new JLabel("Cadastro"), BorderLayout.NORTH);
         card2.add(new inserirFuncionario(), BorderLayout.CENTER);
-        card2.add(btnCard1,BorderLayout.SOUTH);
-        //TODO a tela de cadastro e implementar a tabela
+        card2.add(btnCard1, BorderLayout.SOUTH);
     }
 
     private JPanel criarCard1() {
@@ -58,6 +56,4 @@ public class PainelF extends JPanel{
         painel.setBackground(Color.CYAN);
         return painel;
     }
-
-
 }

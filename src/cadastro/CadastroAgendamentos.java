@@ -16,7 +16,7 @@ public class CadastroAgendamentos {
         return servicosAgendados;
     }
     //cadastro -------------------------------------------------------
-    public void agendarServico(Servico servico){
+    public static void agendarServico(Servico servico){
         if(servico==null){
             throw new ServicoInvalidoException("Digite um serviço valido");}
        else servicosAgendados.add(servico);

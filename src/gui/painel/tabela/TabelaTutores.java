@@ -9,9 +9,11 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.Set;
 
+import static gui.painel.tabela.TabelaFuncionarios.formatarCPF;
+
 public class TabelaTutores extends JPanel {
-    private JTable tabela;
-    private DefaultTableModel modelo;
+    public static JTable tabelaT;
+    public static DefaultTableModel modeloT;
 
     public TabelaTutores(Set<Tutor> tutores) {
         setLayout(new BorderLayout());
@@ -19,47 +21,47 @@ public class TabelaTutores extends JPanel {
         // colunas
         String[] colunas = {"Nome", "CPF", "Telefone", "Endereço", "Tratamento", "Qtd. Animais", "Animais"};
 
-        // modelo da tabela
-        modelo = new DefaultTableModel(colunas, 0) {
+        // modeloT da tabelaT
+        modeloT = new DefaultTableModel(colunas, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
 
-        // Preenche a tabela
+        // Preenche a tabelaT
         for (Tutor t : tutores) {
             Object[] linha = {
                     t.getNome(),
-                    t.getCpf(),
+                    formatarCPF(t.getCpf()),
                     t.getTelefone(),
                     t.getEndereco(),
                     t.getTratamento() != null ? t.getTratamento().toString() : "Não definido",
                     t.getAnimais().size(),
                     formatarAnimais(t.getAnimais())
             };
-            modelo.addRow(linha);
+            modeloT.addRow(linha);
         }
 
-        // Cria a tabela
-        tabela = new JTable(modelo);
-        tabela.setFillsViewportHeight(true);
-        tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        // Cria a tabelaT
+        tabelaT = new JTable(modeloT);
+        tabelaT.setFillsViewportHeight(true);
+        tabelaT.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         // Ajusta largura das colunas
-        tabela.getColumnModel().getColumn(0).setPreferredWidth(150); // Nome
-        tabela.getColumnModel().getColumn(1).setPreferredWidth(120); // CPF
-        tabela.getColumnModel().getColumn(2).setPreferredWidth(110); // Telefone
-        tabela.getColumnModel().getColumn(3).setPreferredWidth(200); // Endereço
-        tabela.getColumnModel().getColumn(4).setPreferredWidth(100); // Tratamento
-        tabela.getColumnModel().getColumn(5).setPreferredWidth(80);  // Qtd. Animais
-        tabela.getColumnModel().getColumn(6).setPreferredWidth(250); // Animais
+        tabelaT.getColumnModel().getColumn(0).setPreferredWidth(150); // Nome
+        tabelaT.getColumnModel().getColumn(1).setPreferredWidth(120); // CPF
+        tabelaT.getColumnModel().getColumn(2).setPreferredWidth(110); // Telefone
+        tabelaT.getColumnModel().getColumn(3).setPreferredWidth(200); // Endereço
+        tabelaT.getColumnModel().getColumn(4).setPreferredWidth(100); // Tratamento
+        tabelaT.getColumnModel().getColumn(5).setPreferredWidth(80);  // Qtd. Animais
+        tabelaT.getColumnModel().getColumn(6).setPreferredWidth(250); // Animais
 
         // Permite quebra de linha nas células
-        tabela.setRowHeight(40);
+        tabelaT.setRowHeight(40);
 
         // Adiciona scroll
-        JScrollPane scrollPane = new JScrollPane(tabela);
+        JScrollPane scrollPane = new JScrollPane(tabelaT);
         add(scrollPane, BorderLayout.CENTER);
     }
 

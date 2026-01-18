@@ -1,10 +1,13 @@
 package gui.painel.tabela;
 
+import animais.Animal;
 import pessoas.Veterinario;
+import servicos.Servico;
 
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 public class TabelaFuncionarios extends JPanel {
@@ -18,35 +21,31 @@ public class TabelaFuncionarios extends JPanel {
         setLayout(new BorderLayout());
 
         // Colunas
-        String[] colunas = {"Nome", "CPF", "Telefone", "CRMV", "Ano de Contrato", "Formação", "Agendamentos", "Ações"};
+        String[] colunas = {"Nome", "CPF", "Telefone", "CRMV", "Ano de Contrato", "Formação", "Ações"};
 
-        //modelo da tabela
+        //modeloT da tabelaT
         modelo = new DefaultTableModel(colunas, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return column == 7;
+                return column == 6;
             }
         };
 
-        //tabela com os dados
+        //tabelaT com os dados
         for (Veterinario v : veterinarios) {
             Object[] linha = {
                     v.getNome(),
                     formatarCPF(v.getCpf()),
                     v.getTelefone(),
                     v.getCrmv(),
-                    /* v.getAgendamentos() != null ? v.getAgendamentos().size() : 0, só um placeholder
-                    pra quando tiver metod que retorna um Set com todos os agendamentos.
-                     */
                     v.getAnoContrato(),
                     v.getAnoFormacao(),
-                    "Agendamentos",
                     "Detalhes"
             };
             modelo.addRow(linha);
         }
 
-        // Cria a tabela
+        // Cria a tabelaT
         tabela = new JTable(modelo);
         tabela.setFillsViewportHeight(true);
         tabela.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -58,12 +57,11 @@ public class TabelaFuncionarios extends JPanel {
         tabela.getColumnModel().getColumn(3).setPreferredWidth(100); // CRMV
         tabela.getColumnModel().getColumn(4).setPreferredWidth(100); // DataContrato
         tabela.getColumnModel().getColumn(5).setPreferredWidth(100); // DataFormacao
-        tabela.getColumnModel().getColumn(6).setPreferredWidth(100); // Agendamentos
-        tabela.getColumnModel().getColumn(7).setPreferredWidth(100); // Botão
+        tabela.getColumnModel().getColumn(6).setPreferredWidth(100); // Botão
 
         //Gerenciar o botao
-        tabela.getColumnModel().getColumn(7).setCellRenderer(new RenderBotao());
-        tabela.getColumnModel().getColumn(7).setCellEditor(new EditorBotao(new JCheckBox(), veterinarios));
+        tabela.getColumnModel().getColumn(6).setCellRenderer(new RenderBotao());
+        tabela.getColumnModel().getColumn(6).setCellEditor(new EditorBotao(new JCheckBox(), veterinarios));
 
         // Adiciona scroll
         JScrollPane scrollPane = new JScrollPane(tabela);
@@ -87,7 +85,7 @@ public class TabelaFuncionarios extends JPanel {
                 cpf.substring(9, 11);
     }
 
-    // Método para obter a tabela
+    // Método para obter a tabelaT
     public JTable getTabela() {
         return tabela;
     }
@@ -108,9 +106,9 @@ public class TabelaFuncionarios extends JPanel {
         return null;
     }
 
-    private void abrirDetalhes(Veterinario vet) {
+    private void abrirDetalhesVeterinario(Veterinario vet) {
         JFrame frameDetalhes = new JFrame("Detalhes - " + vet.getNome());
-        frameDetalhes.setSize(500, 400);
+        frameDetalhes.setSize(900, 700);
         frameDetalhes.setLocationRelativeTo(this);
         frameDetalhes.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frameDetalhes.setVisible(true);
@@ -184,11 +182,105 @@ public class TabelaFuncionarios extends JPanel {
         JTextField txtAgendamentos = new JTextField(String.valueOf(numAgendamentos), 30);
         txtAgendamentos.setEditable(false);
         painelCampos.add(txtAgendamentos, gbc);
-        painel.add(painelCampos, BorderLayout.CENTER);
+        painel.add(painelCampos, BorderLayout.NORTH);
+
+        // Tabela de agendamentos
+        JPanel painelAgendamentos = new JPanel(new BorderLayout());
+        painelAgendamentos.setBorder(BorderFactory.createTitledBorder("Agendamentos"));
+
+        // Buscar agendamentos do vet
+        Set<Servico> agendamentosVet = buscarAgendamentosVeterinario(vet);
+
+        if (agendamentosVet != null && !agendamentosVet.isEmpty()) {
+            // Criar tabelaT de agendamentos
+            String[] colunasAg = {"Tipo", "Data/Hora Inicial", "Data/Hora Final", "Animal", "Tutor", "Valor", "Status"};
+            DefaultTableModel modeloAg = new DefaultTableModel(colunasAg, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+            };
+
+            DateTimeFormatter formatterAg = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+
+            for (Servico s : agendamentosVet) {
+                Object[] linha = {
+                        s.tipoServico(),
+                        s.getDataHoraInicio().format(formatterAg),
+                        s.getDataHoraFinal().format(formatterAg),
+                        s.getAnimal().getNome(),
+                        s.getAnimal().getTutor().getNome(),
+                        String.format("R$ %.2f", s.getValorBase()),
+                        s.isCancelado() ? "Cancelado" : "Agendado"
+                };
+                modeloAg.addRow(linha);
+            }
+
+            JTable tabelaAg = new JTable(modeloAg);
+            tabelaAg.setFillsViewportHeight(true);
+
+            // Ajusta largura das colunas
+            tabelaAg.getColumnModel().getColumn(0).setPreferredWidth(120);
+            tabelaAg.getColumnModel().getColumn(1).setPreferredWidth(130);
+            tabelaAg.getColumnModel().getColumn(2).setPreferredWidth(130);
+            tabelaAg.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tabelaAg.getColumnModel().getColumn(4).setPreferredWidth(80);
+            tabelaAg.getColumnModel().getColumn(5).setPreferredWidth(80);
+
+            JScrollPane scrollAg = new JScrollPane(tabelaAg);
+            scrollAg.setPreferredSize(new Dimension(800, 200));
+            painelAgendamentos.add(scrollAg, BorderLayout.CENTER);
+
+            // Total de agendamentos
+            JPanel painelTotal = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+            double total = calcularTotalAgendamentos(agendamentosVet);
+            JLabel labelTotal = new JLabel(String.format("Total: R$ %.2f | Agendamentos: %d", total, agendamentosVet.size()));
+            labelTotal.setFont(new Font("Arial", Font.BOLD, 12));
+            painelTotal.add(labelTotal);
+            painelAgendamentos.add(painelTotal, BorderLayout.SOUTH);
+
+        } else {
+            JLabel labelSemAgendamentos = new JLabel("Nenhum agendamento encontrado", SwingConstants.CENTER);
+            labelSemAgendamentos.setFont(new Font("Arial", Font.ITALIC, 14));
+            painelAgendamentos.add(labelSemAgendamentos, BorderLayout.CENTER);
+        }
+
+        painel.add(painelAgendamentos, BorderLayout.CENTER);
+
+        // Botão fechar
+        JPanel painelBotao = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JButton btnFechar = new JButton("Fechar");
+        btnFechar.addActionListener(e -> frameDetalhes.dispose());
+        painelBotao.add(btnFechar);
+        painel.add(painelBotao, BorderLayout.SOUTH);
+
+        frameDetalhes.setVisible(true);
     }
-        //TODO tabela de agendamentos por Veterinário (Depende de ter o método pra isso)
 
+    // Método auxiliar para buscar agendamentos
+    private Set<Servico> buscarAgendamentosVeterinario(Veterinario vet) {
+        Set<Servico> todosServicos = cadastro.CadastroAgendamentos.getServicosAgendados();
+        Set<Servico> servicosVeterinario = new java.util.TreeSet<>();
 
+        for (Servico s : todosServicos) {
+            if (s.getVeterinario().equals(vet)) {
+                servicosVeterinario.add(s);
+            }
+        }
+
+        return servicosVeterinario;
+    }
+
+    // Método auxiliar para calcular total dos agendamentos
+    private double calcularTotalAgendamentos(Set<Servico> servicos) {
+        double total = 0.0;
+        for (Servico s : servicos) {
+            if (!s.isCancelado()) {
+                total += s.getValorBase();
+            }
+        }
+        return total;
+    }
 
     class RenderBotao implements TableCellRenderer {
         private JButton button;
@@ -234,18 +326,18 @@ public class TabelaFuncionarios extends JPanel {
         public Object getCellEditorValue() {
             if (clicked) {
                 // Obtém o veterinário da linha clicada
-                String nome = (String) modelo.getValueAt(row, 0);
+                String CPF = (String) TabelaFuncionarios.modelo.getValueAt(row, 1);
                 Veterinario vetSelecionado = null;
 
                 for (Veterinario v : veterinarios) {
-                    if (v.getNome().equals(nome)) {
+                    if (formatarCPF(v.getCpf()).equals(CPF)) {
                         vetSelecionado = v;
                         break;
                     }
                 }
 
                 if (vetSelecionado != null) {
-                    abrirDetalhes(vetSelecionado);
+                    abrirDetalhesVeterinario(vetSelecionado);
                 }
             }
             clicked = false;

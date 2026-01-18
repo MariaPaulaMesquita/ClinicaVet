@@ -1,5 +1,6 @@
 package gui.painel;
 
+import gui.painel.cadastro.InserirTutores;
 import gui.painel.tabela.TabelaTutores;
 
 import javax.swing.*;
@@ -7,53 +8,59 @@ import java.awt.*;
 
 import static cadastro.CadastroClientes.getTutores;
 
-public class PainelT extends JPanel{
-    public PainelT(){
-        this.setBackground(Color.blue);
+public class PainelT extends JPanel {
+
+    // CardLayout público para ser usado pelo inserirTutores
+    public static CardLayout CartaT;
+    public static JPanel painelPrincipalT;
+
+    public PainelT() {
         this.setLayout(new BorderLayout());
 
-        CardLayout Carta = new CardLayout();
-        JPanel painelPrincipal = new JPanel(Carta);
-        this.add(painelPrincipal, BorderLayout.CENTER);
+        CartaT = new CardLayout();
+        painelPrincipalT = new JPanel(CartaT);
+        this.add(painelPrincipalT, BorderLayout.CENTER);
 
-        //JPanel y = new JPanel();
-        JPanel z = new JPanel();
+        // Cards
+        JPanel card1 = criarCard1(); // listagem
+        JPanel card2 = criarCard2(); // cadastro
 
-        JPanel card1 = criarCard1();
-        card1.setLayout(new BorderLayout());
+        painelPrincipalT.add(card1, "Card 1");
+        painelPrincipalT.add(card2, "Card 2");
 
-        JPanel card2 = criarCard2();
-        card2.setLayout(new BorderLayout());
-
-        painelPrincipal.add(card1, "Card 1");
-        painelPrincipal.add(card2, "Card 2");
-
-        JButton btnCard1 = new JButton("Voltar");
-        JButton btnCard2 = new JButton("Cadastrar Novo");
-
-        btnCard1.addActionListener(e -> Carta.show(painelPrincipal, "Card 1"));
-        btnCard2.addActionListener(e -> Carta.show(painelPrincipal, "Card 2"));
-
-        card1.add(new JLabel("Listagem"),BorderLayout.NORTH);
-        card1.add(new TabelaTutores(getTutores()), BorderLayout.CENTER);
-        card1.add(btnCard2,BorderLayout.SOUTH);
-        card2.add(new JLabel("Cadastro"),BorderLayout.NORTH);
-        card2.add(z, BorderLayout.CENTER);
-        card2.add(btnCard1,BorderLayout.SOUTH);
-        //TODO a tela de cadastro e implementar a tabela
+        CartaT.show(painelPrincipalT, "Card 1");
     }
 
     private JPanel criarCard1() {
-        JPanel painel = new JPanel();
-        painel.setBackground(Color.PINK);
+        JPanel painel = new JPanel(new BorderLayout());
+
+        JLabel titulo = new JLabel("Listagem de Tutores");
+        titulo.setHorizontalAlignment(SwingConstants.CENTER);
+        titulo.setFont(new Font("Arial", Font.BOLD, 16));
+
+        JButton btnCadastrar = new JButton("Cadastrar Novo");
+        btnCadastrar.addActionListener(e ->
+                CartaT.show(painelPrincipalT, "Card 2")
+        );
+
+        painel.add(titulo, BorderLayout.NORTH);
+        painel.add(new TabelaTutores(getTutores()), BorderLayout.CENTER);
+        painel.add(btnCadastrar, BorderLayout.SOUTH);
+
         return painel;
     }
 
     private JPanel criarCard2() {
-        JPanel painel = new JPanel();
-        painel.setBackground(Color.CYAN);
+        JPanel painel = new JPanel(new BorderLayout());
+
+        JButton btnVoltar = new JButton("Voltar");
+        btnVoltar.addActionListener(e ->
+                CartaT.show(painelPrincipalT, "Card 1")
+        );
+
+        painel.add(new InserirTutores(), BorderLayout.CENTER);
+        painel.add(btnVoltar, BorderLayout.SOUTH);
+
         return painel;
     }
-
-
 }

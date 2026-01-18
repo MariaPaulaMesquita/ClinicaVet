@@ -1,5 +1,6 @@
 package animais;
 
+import java.time.LocalDate;
 import java.time.Period;
 import excecoes.IdadeInvalidaException;
 
@@ -12,6 +13,10 @@ public class Gato extends Animal{
     }
     public Gato(String nome, String sexo, int mes, int ano, String raca, String pelagem, boolean acessoARua) {
         super(nome, sexo, mes, ano, raca, pelagem);
+        this.acessoARua = acessoARua;
+    }
+    public Gato(String nome, String sexo, LocalDate tempo, String raca, String pelagem, boolean acessoARua) {
+        super(nome, sexo, tempo, raca, pelagem);
         this.acessoARua = acessoARua;
     }
 

@@ -113,7 +113,7 @@ public class inserirFuncionario extends JPanel {
         //TODO O BOTAO PRA CADASTRAR COM BASE NOS DADOS PREENCHIDOS E POPUP DE EXCECAO
     }
 
-    // Método para atualizar a tabela
+    // Método para atualizar a tabelaT
     public static void atualizarTabelaF(TabelaFuncionarios painelTabela, Set<Veterinario> veterinarios) {
         modelo.setRowCount(0);
 
@@ -125,7 +125,6 @@ public class inserirFuncionario extends JPanel {
                     v.getCrmv(),
                     v.getAnoContrato(),
                     v.getAnoFormacao(),
-                    "Agendamentos",
                     "Detalhes"
             };
             modelo.addRow(linha);
@@ -150,16 +149,52 @@ public class inserirFuncionario extends JPanel {
     }
 
     private void acaoCadastro(){
-        DefaultTableModel dtmTabelaVet = getModelo();
         try{
-            Veterinario vet = new Veterinario(txtNome.getText(),txtCPF.getText(),txtTelefone.getText(),txtCRMV.getText(),Integer.parseInt(txtDC.getText()),Integer.parseInt(txtDF.getText()));
+            Veterinario vet = new Veterinario(
+                    txtNome.getText(),
+                    txtCPF.getText(),
+                    txtTelefone.getText(),
+                    txtCRMV.getText(),
+                    Integer.parseInt(txtDC.getText()),
+                    Integer.parseInt(txtDF.getText())
+            );
+
             cadastrarVeterinario(vet);
-            Alerta alerta = new Alerta("Cadastro concluido");
-            Carta.show(painelPrincipal, "Card 1");
-            listarVeterinarios();
-            atualizarTabelaF(tabelaF,getVeterinarios());
+
+            // Atualiza a tabela usando a instância correta
+            Set<Veterinario> vets = getVeterinarios();
+            modelo.setRowCount(0);
+
+            for (Veterinario v : vets) {
+                Object[] linha = {
+                        v.getNome(),
+                        formatarCPF(v.getCpf()),
+                        v.getTelefone(),
+                        v.getCrmv(),
+                        v.getAnoContrato(),
+                        v.getAnoFormacao(),
+                        "Detalhes"
+                };
+                modelo.addRow(linha);
+            }
+
+            // Limpa os campos
+            txtNome.setText("");
+            txtCPF.setText("");
+            txtTelefone.setText("");
+            txtCRMV.setText("");
+            txtDC.setText("");
+            txtDF.setText("");
+
+            new Alerta("Veterinário cadastrado com sucesso!");
+            CartaF.show(painelPrincipalF, "Card 1");
+
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            JOptionPane.showMessageDialog(this,
+                    "Erro ao cadastrar veterinário: " + e.getMessage(),
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
         }
     }
 }
