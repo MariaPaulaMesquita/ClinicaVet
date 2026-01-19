@@ -13,6 +13,7 @@ public class Vacinacao extends Servico implements Preco{
         this.valorBase = TiposVacinas.vacinas.get(nomeVacina);
     }
 
+    @Override
     public double calcularPreco(Tutor tutor){
         if(tutor.getTratamento() == Tratamento.MENSALISTA){
             return this.valorBase*0.7; //desconto 30%

@@ -14,12 +14,12 @@ public class Painel1 extends JPanel {
         this.setBackground(Color.gray);
         this.setLayout(new GridLayout(2,2,25,25));
         EmptyBorder bordaVazia = new EmptyBorder(25, 25, 25, 25);
-        LineBorder bordaCor = new LineBorder(Color.white, 25);
-        EtchedBorder bordaEncravada = new EtchedBorder();
-        CompoundBorder borda1 = new CompoundBorder(bordaCor,bordaEncravada);
-        CompoundBorder borda2 = new CompoundBorder(borda1, bordaVazia);
+        //LineBorder bordaCor = new LineBorder(Color.white, 25);
+        //EtchedBorder bordaEncravada = new EtchedBorder();
+        //CompoundBorder borda1 = new CompoundBorder(bordaCor,bordaEncravada);
+        //CompoundBorder borda2 = new CompoundBorder(borda1, bordaVazia);
 
-        this.setBorder(borda2);
+        this.setBorder(bordaVazia);
         this.add(new verAnimais());
         this.add(new verAgendamentos());
         this.add(new verFuncionarios());

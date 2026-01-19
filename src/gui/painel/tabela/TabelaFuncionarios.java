@@ -210,7 +210,7 @@ public class TabelaFuncionarios extends JPanel {
                         s.getDataHoraFinal().format(formatterAg),
                         s.getAnimal().getNome(),
                         s.getAnimal().getTutor().getNome(),
-                        String.format("R$ %.2f", s.getValorBase()),
+                        String.format("R$ %.2f", s.calcularPreco(s.getAnimal().getTutor())),
                         s.isCancelado() ? "Cancelado" : "Agendado"
                 };
                 modeloAg.addRow(linha);

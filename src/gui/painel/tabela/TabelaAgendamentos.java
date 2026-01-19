@@ -46,7 +46,7 @@ public class TabelaAgendamentos extends JPanel {
                     s.getAnimal().getNome(),
                     s.getAnimal().getTutor().getNome(),
                     s.getVeterinario().getNome(),
-                    String.format("R$ %.2f", s.getValorBase()),
+                    String.format("R$ %.2f", s.calcularPreco(s.getAnimal().getTutor())),
                     s.isCancelado() ? "Cancelado" : "Agendado",
                     "Editar Data",
                     s.isCancelado() ? "-" : "Cancelar"
@@ -373,7 +373,7 @@ public class TabelaAgendamentos extends JPanel {
                     s.getAnimal().getNome(),
                     s.getAnimal().getTutor().getNome(),
                     s.getVeterinario().getNome(),
-                    String.format("R$ %.2f", s.getValorBase()),
+                    String.format("R$ %.2f", s.calcularPreco(s.getAnimal().getTutor())),
                     s.isCancelado() ? "Cancelado" : "Agendado",
                     "Editar Data",
                     s.isCancelado() ? "-" : "Cancelar"

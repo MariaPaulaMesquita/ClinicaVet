@@ -233,7 +233,7 @@ public class TabelaAnimais extends JPanel {
                         s.getDataHoraInicio().format(formatterAg),
                         s.getDataHoraFinal().format(formatterAg),
                         s.getVeterinario().getNome(),
-                        String.format("R$ %.2f", s.getValorBase()),
+                        String.format("R$ %.2f", s.calcularPreco(s.getAnimal().getTutor())),
                         s.isCancelado() ? "Cancelado" : "Agendado"
                 };
                 modeloAg.addRow(linha);

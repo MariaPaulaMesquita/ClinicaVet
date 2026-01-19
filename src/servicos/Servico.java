@@ -1,6 +1,7 @@
 package servicos;
 import java.time.LocalDateTime;
 import animais.Animal;
+import pessoas.Tutor;
 import pessoas.Veterinario;
 
 public abstract class Servico implements Comparable<Servico> {
@@ -30,6 +31,7 @@ public abstract class Servico implements Comparable<Servico> {
     }
 
     public abstract String tipoServico();
+    public abstract double calcularPreco(Tutor tutor);
 
     public void mostrarDataHoraInicio(){
         System.out.print("Dia: "+ getDataHoraInicio().getDayOfMonth() +"/" + getDataHoraInicio().getMonthValue() + ", Horário: " + getDataHoraInicio().getHour() + ":" + getDataHoraInicio().getMinute());
