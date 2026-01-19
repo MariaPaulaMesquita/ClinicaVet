@@ -25,9 +25,9 @@ public class TabelaAnimais extends JPanel {
         setLayout(new BorderLayout());
 
         // Define as colunas
-        String[] colunas = {"Nome", "Sexo", "Data Nascimento", "Idade", "Raça", "Pelagem", "Porte", "Acesso à Rua", "Tutor", "Faixa Etária", "ID","Ações"};
+        String[] colunas = {"Nome", "Sexo", "Data Nascimento", "Idade", "Raça", "Pelagem", "Porte", "Acesso à Rua", "Tutor", "Faixa Etária", "ID","Ações", " "};
 
-        // Cria o modeloT da tabelaT
+        // Cria o modeloT da tabela
         modeloAN = new DefaultTableModel(colunas, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -49,7 +49,8 @@ public class TabelaAnimais extends JPanel {
                     a.getTutor() != null ? a.getTutor().getNome() : "Sem tutor",
                     a.calcularFaixaEtaria(),
                     a.getID(),
-                    "Detalhes"
+                    "Detalhes",
+                    a
             };
             modeloAN.addRow(linha);
         }
@@ -71,8 +72,10 @@ public class TabelaAnimais extends JPanel {
         tabelaAN.getColumnModel().getColumn(7).setPreferredWidth(100); // Acesso à Rua
         tabelaAN.getColumnModel().getColumn(8).setPreferredWidth(120); // Tutor
         tabelaAN.getColumnModel().getColumn(9).setPreferredWidth(100); // Faixa Etária
-        tabelaAN.getColumnModel().getColumn(10).setPreferredWidth(40); // Botão
+        tabelaAN.getColumnModel().getColumn(10).setPreferredWidth(40); // id
         tabelaAN.getColumnModel().getColumn(11).setPreferredWidth(100); // Botão
+        tabelaAN.getColumnModel().getColumn(12).setMinWidth(0);
+        tabelaAN.getColumnModel().getColumn(12).setMaxWidth(0); // objeto
 
         // Gerenciar o botão
         tabelaAN.getColumnModel().getColumn(11).setCellRenderer(new RenderBotao());
@@ -216,7 +219,7 @@ public class TabelaAnimais extends JPanel {
         Set<Servico> agendamentosAnimal = buscarAgendamentosAnimal(animal);
 
         if (agendamentosAnimal != null && !agendamentosAnimal.isEmpty()) {
-            // Criar tabelaT de agendamentos
+            // Criar tabela de agendamentos
             String[] colunasAg = {"Tipo", "Data/Hora Inicial", "Data/Hora Final", "Veterinário", "Valor", "Status"};
             DefaultTableModel modeloAg = new DefaultTableModel(colunasAg, 0) {
                 @Override
@@ -354,18 +357,10 @@ public class TabelaAnimais extends JPanel {
         public Object getCellEditorValue() {
             if (clicked) {
                 // Obtém o animal da linha clicada
-                String nome = (String) modeloAN.getValueAt(row, 0);
-                Animal animalSelecionado = null;
+                Animal animal = (Animal) modeloAN.getValueAt(row, 12);
 
-                for (Animal a : animais) {
-                    if (a.getNome().equals(nome)) {
-                        animalSelecionado = a;
-                        break;
-                    }
-                }
-
-                if (animalSelecionado != null) {
-                    abrirDetalhesAnimal(animalSelecionado);
+                if (animal != null) {
+                    abrirDetalhesAnimal(animal);
                 }
             }
             clicked = false;
@@ -396,7 +391,8 @@ public class TabelaAnimais extends JPanel {
                     a.getTutor() != null ? a.getTutor().getNome() : "Sem tutor",
                     a.calcularFaixaEtaria(),
                     a.getID(),
-                    "Detalhes"
+                    "Detalhes",
+                    a
             };
             modeloAN.addRow(linha);
         }
