@@ -98,7 +98,6 @@ public class InserirTutores extends JPanel {
 
     private void acaoCadastro() {
         try {
-            // Validações básicas antes de criar o objeto
             if (txtNome.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this,
                         "Digite o nome do tutor!",

@@ -35,9 +35,9 @@ public class PainelT extends JPanel {
         JPanel painel = new JPanel(new BorderLayout());
 
         JLabel titulo = new JLabel("Listagem de Tutores");
+        painel.setBackground(new Color(255, 239, 179));
         titulo.setHorizontalAlignment(SwingConstants.CENTER);
         titulo.setFont(new Font("Arial", Font.BOLD, 16));
-
         JButton btnCadastrar = new JButton("Cadastrar Novo");
         btnCadastrar.addActionListener(e ->
                 CartaT.show(painelPrincipalT, "Card 2")
@@ -52,7 +52,8 @@ public class PainelT extends JPanel {
 
     private JPanel criarCard2() {
         JPanel painel = new JPanel(new BorderLayout());
-
+        painel.setBackground(new Color(234, 214, 139));
+        painel.add(new JLabel("  "),BorderLayout.NORTH);
         JButton btnVoltar = new JButton("Voltar");
         btnVoltar.addActionListener(e ->
                 CartaT.show(painelPrincipalT, "Card 1")

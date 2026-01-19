@@ -8,6 +8,8 @@ import java.awt.*;
 
 public class Tela extends JFrame {
     public Tela(){
+        ImageIcon pata = new ImageIcon("src/gui/etc/img/paw.png");
+        this.setIconImage(pata.getImage());
         this.setTitle("Gerenciamento");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setMinimumSize(new Dimension(640,480));
