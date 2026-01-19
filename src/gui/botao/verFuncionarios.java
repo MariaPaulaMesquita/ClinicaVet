@@ -10,7 +10,6 @@ import java.awt.event.ActionListener;
 
 import static cadastro.CadastroFuncionarios.getVeterinarios;
 import static gui.painel.PainelF.tabelaF;
-import static gui.painel.cadastro.inserirFuncionario.atualizarTabelaF;
 
 public class verFuncionarios extends JButton {
     public verFuncionarios(){
@@ -23,7 +22,7 @@ public class verFuncionarios extends JButton {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame Funcionarios = new Funcionarios();
-                atualizarTabelaF(tabelaF,getVeterinarios());
+                tabelaF.atualizarTabelaF();
             }
         });
     }

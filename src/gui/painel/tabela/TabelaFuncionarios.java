@@ -10,6 +10,8 @@ import java.awt.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
+import static cadastro.CadastroFuncionarios.getVeterinarios;
+
 public class TabelaFuncionarios extends JPanel {
     private static JTable tabela;
     public static DefaultTableModel modelo;
@@ -269,6 +271,24 @@ public class TabelaFuncionarios extends JPanel {
         }
 
         return servicosVeterinario;
+    }
+
+    public void atualizarTabelaF() {
+        Set<Veterinario> vets = getVeterinarios();
+        modelo.setRowCount(0);
+
+        for (Veterinario v : vets) {
+            Object[] linha = {
+                    v.getNome(),
+                    formatarCPF(v.getCpf()),
+                    v.getTelefone(),
+                    v.getCrmv(),
+                    v.getAnoContrato(),
+                    v.getAnoFormacao(),
+                    "Detalhes"
+            };
+            modelo.addRow(linha);
+        }
     }
 
     // Método auxiliar para calcular total dos agendamentos
